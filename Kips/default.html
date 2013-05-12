@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Kips</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <!-- Kips references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/navigator.js"></script>
+    <script src="/js/default.js"></script>
+</head>
+<body>
+    <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/pages/login/login.html'}"></div>
+    <div id="appbar" data-win-control="WinJS.UI.AppBar">
+        <button id="deleteList" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'deleteList', section:'selection', label:'Delete List', icon:'delete'}"></button>
+        <button id="deleteClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'deleteCLip', section:'selection', label:'Delete Clip', icon:'delete'}"></button>
+        <button id="addClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addClip', section:'global', label:'Text size', icon:'add'}"></button>
+        <button id="addNote" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addNote', section:'global', label:'Text size', icon:'page'}"></button>
+        <button id="addList" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addList', section:'global', label:'Text size', icon:'list'}"></button>
+        <button id="editClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'editClip', section:'selection', label:'Text size', icon:'edit'}"></button>
+    </div> 
+
+        <div id="confirmFlyout" data-win-control="WinJS.UI.Flyout" aria-label="{Confirm purchase flyout}">
+       <form>
+				<div>
+					<label>List name: </label>
+					<input id="username" type="text">
+				</div>
+				<div>
+					<label>Password</label>
+					<input id="password" type="password">
+				</div>
+			</form>
+			<div>
+				<button id="login">Login</button>
+			</div>
+    </div>
+
+        <div data-win-control="WinJS.UI.AppBar" aria-label="Navigation Bar" 
+        data-win-options="{layout:'custom',placement:'top'}">
+        <header aria-label="Navigation bar" role="banner">
+            <button id="cmdBack" class="win-backbutton" aria-label="Back"></button>
+        </header>
+    </div>
+</body>
+</html>

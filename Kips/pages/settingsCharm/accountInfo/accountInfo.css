@@ -1,0 +1,50 @@
+﻿win-content {
+background-color:whitesmoke;
+}
+.accountInfo section[role=main] {
+    margin-left: 120px;
+    margin-right: 120px;
+}
+.social-handle{
+text-align: left;
+color: #999;
+font-size: 18px;
+font-weight: 400;
+width: 160px;
+padding-top: 5px;
+padding-left:10px;
+padding-bottom: 10px;
+}
+.avatar {
+float:left;
+margin-right: 30px;
+}
+.account-name {
+margin-left: 10px;
+text-align:justify;
+}
+.account-follow {
+clear: both;
+padding-top: 7px;
+}
+.social {
+vertical-align:middle;
+}
+.account-bio {
+ background-color: rgb(245, 245, 245);
+ color: #000;
+ padding: 10px;
+}
+@media screen and (-ms-view-state: snapped) {
+    .accountInfo section[role=main] {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    .accountInfo section[role=main] {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+}

@@ -1,0 +1,40 @@
+﻿#accountOpener {
+margin: 65px 86px 28px 1000px; 
+-ms-grid-column-span: 1; 
+-ms-grid-column: 1; 
+-ms-grid-row-span: 1;
+}
+.avatar {
+       height: auto;
+       max-width: 100px;
+       border-radius: 100px;
+       border: 0;
+}
+
+    .avatar.small {
+        height: 50px;
+        width: 50px;
+		float: right;
+    }
+
+
+
+.account-follow {
+    font-size: large;
+}
+.social {
+    display: inline;
+    color: #999;
+    font-size: xx-large;
+}
+
+     a:visited {
+     color: #6ccbd7;
+    }
+.social-list {
+list-style-type: none;
+padding:0;
+margin:0;
+}
+
+

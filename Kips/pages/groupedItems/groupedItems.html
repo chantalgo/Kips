@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>groupedItemsPage</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="/css/default.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/ss-standard.css" rel="stylesheet" />
+    <link href="/pages/groupedItems/groupedItems.css" rel="stylesheet" />
+    <script src="/js/data.js"></script>
+    <script src="/pages/groupedItems/groupedItems.js"></script>
+</head>
+<body>
+    <!-- These templates are used to display each item in the ListView declared below. -->
+    <div class="headertemplate" data-win-control="WinJS.Binding.Template" data-win-design-locked="true">
+        <button class="group-header win-type-x-large win-type-interactive" data-win-bind="groupKey: key"
+            onclick="Application.navigator.pageControl.navigateToGroup(event.srcElement.groupKey)" role="link" tabindex="-1" type="button">
+            <span class="group-title win-type-ellipsis" data-win-bind="textContent: title"></span>
+            <span class="group-chevron"></span>
+        </button>
+    </div>
+    <div class="itemtemplate" data-win-control="WinJS.Binding.Template" data-win-design-locked="true">
+        <div class="item">
+            <img class="item-image" src="#" data-win-bind="src: backgroundImage; alt: title" />
+            <div class="item-overlay">
+                <h4 class="item-title" data-win-bind="textContent: title"></h4>
+                <h6 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: content"></h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="itemtemplateSmall" data-win-control="WinJS.Binding.Template" data-win-design-locked="true">
+        <div class="itemSmall">
+                <h4 class="item-title-small" data-win-bind="textContent: title"></h4>
+        </div>
+    </div>
+
+    <div class="zoomedOutItemTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="zoomedOutItemContainer" >
+            <h2 class="zoomedOutGroupTitle" data-win-bind="textContent: title; alt: title"> </h2>
+            <span class="ss-standard"></span>
+            <!--<div class="zoomedOutItemCount" data-win-bind="textContent: recipesCount;"></div>-->
+        </div>
+</div>
+
+    <!-- The content that will be loaded and displayed. -->
+    <div class="fragment groupeditemspage">
+    	<header aria-label="Header content" role="banner" data-win-design-locked="true">
+    		<button class="win-backbutton" aria-label="Back" disabled type="button" data-win-design-locked="true"></button>
+    		<h1 class="titlearea win-type-ellipsis" data-win-design-locked="true"><span class="pagetitle">Kips</span>
+    		</h1>
+            
+    	</header>
+    	<div id="account" style="margin: 40px 76px 23px 1010px; -ms-grid-column-span: 1; -ms-grid-column: 1; -ms-grid-row-span: 1;">
+    		<img class="avatar small" id="openAccount" data-win-bind="src:avatar_url">
+    	</div>
+
+        <section aria-label="Main content" role="main">
+            <div id="zoom" data-win-control="WinJS.UI.SemanticZoom" data-win-options="{ initiallyZoomedOut: false }" style="height: 100%">
+                <div id="zoomedInListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi' }"></div>
+                <div id="zoomedOutListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi' }"></div>
+            </div>
+</section>
+
+    </div>
+</body>
+</html>

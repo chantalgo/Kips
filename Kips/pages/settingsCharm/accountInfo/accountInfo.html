@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>accountInfo</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="accountInfo.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/ss-social-circle.css" rel="stylesheet" />
+
+    <script src="accountInfo.js"></script>
+</head>
+    <body>
+        <!-- BEGINSETTINGSFLYOUT -->
+        <div data-win-control="WinJS.UI.SettingsFlyout" id="accountInfoFlyout" aria-label="Account Flyout" data-win-options="{settingsCommandId:'defaults',width:'narrow'}">
+            <!-- Use either 'win-ui-light' or 'win-ui-dark' depending on the contrast between the header title and background color -->
+            <div class="win-ui-dark win-header" style="color:whitesmoke;background-color:rgba(185, 42, 42, 0.91)">
+                <button type="button" onclick="WinJS.UI.SettingsFlyout.show()" class="win-backbutton" style="color:whitesmoke"></button>
+                <div class="win-label" >Account</div>
+            </div>
+            <div class="win-content">
+
+                <div class="win-settings-section">
+                    <img class="avatar" id="openAccount" data-win-bind="src:avatar_url" src="#">
+                    <h2 class="account-name" data-win-bind="innerText: full_name"></h2>
+                    <div class="account-follow"><span data-win-bind="innerText: counts.followed_by"></span><span> Follower, </span><span data-win-bind="innerText: counts.follows"></span><span> Following</span></div>
+                </div>
+
+                <div class="win-settings-section">
+                    <h3>About</h3>
+                    <div class="account-bio" data-win-bind="innerText: bio">...bio is empty...</div>
+                </div>
+
+                <div class="win-settings-section">
+                    <h3>Social</h3>
+                    <ul class="social-list">
+                        <li><span class="social ss-link"></span><a class="social-handle" data-win-bind="innerText: website_url; href: website_url"></a></li>
+                        <li><span class="social ss-twitter"></span><a class="social-handle" data-win-bind="innerText: twitter"></a></li>
+                        <li><span class="social ss-github"></span><a class="social-handle" data-win-bind="innerText: github"></a></li>
+                        <li><span class="social ss-dribbble"></span><a class="social-handle" data-win-bind="innerText: dribbble"></a></li>
+                    </ul>
+                </div>
+                
+                <div class="win-settings-section">
+                    <h3>Settings</h3>
+                    <button>Sign out</button>
+                </div>
+
+            </div>
+        </div>
+        <!-- ENDSETTINGSFLYOUT -->
+    </body>
+</html>
