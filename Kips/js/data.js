@@ -115,8 +115,6 @@
         getFeeds().then(function () {
             // Process each blog.
             blogs.forEach(function (feed) {
-                console.log(feed);
-                console.log("stop");
                 feed.dataPromise.then(function (articlesResponse) {
                     var articleSyndication = JSON.parse(articlesResponse.responseText);
                     // Process the blog posts.
@@ -162,6 +160,11 @@
             }
             catch (er) {
             }
+
+
+            if (post.url_domain == "github.com") {
+                postbg = '/images/GitHub-Mark-120px-plus.png';
+            }
             // Store the post info we care about in the array.
             blogPosts.push({
                 group: feed,
@@ -183,9 +186,7 @@
         for ( i = 0; i < Kippt.lists.meta.total_count; i++) {
             var obj = Kippt.lists.objects[i];
             if (blogs[i].key == blogId) {
-                console.log("found it?" + i);
                 var feed = blogs[i];
-                console.log(feed);
                 blogs[i].dataPromise = acquireSyndicationAll(blogs[i].key);
                 blogs[i].dataPromise.then(function (articlesResponse) {
                     var articleSyndication = JSON.parse(articlesResponse.responseText);
@@ -216,7 +217,6 @@
             // Process each blog post.
             for (var postIndex = 0; postIndex < max; postIndex++) {
                 var post = posts[postIndex];
-                console.log();
                 var postbg,postdescription;
                     try {
                         if (post.media != null && post.media.images != null && post.media.images.tile != null && post.media.images.tile.url != null) {
