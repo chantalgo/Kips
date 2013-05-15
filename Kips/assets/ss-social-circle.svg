@@ -3,7 +3,7 @@
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata></metadata>
 <defs>
-<font id="SSSocialCircle" >
+<font id="SSSocialCircle" horiz-adv-x="1000">
 <font-face font-family="SS Social" units-per-em="2048" ascent="2176" descent="-640" />
 <missing-glyph  />
 <glyph  horiz-adv-x="2048"  />

@@ -16,7 +16,7 @@
     <script src="/js/data.js"></script>
     <script src="/pages/groupedItems/groupedItems.js"></script>
 </head>
-<body>
+<body >
     <!-- These templates are used to display each item in the ListView declared below. -->
     <div class="headertemplate" data-win-control="WinJS.Binding.Template" data-win-design-locked="true">
         <button class="group-header win-type-x-large win-type-interactive" data-win-bind="groupKey: key"
@@ -58,12 +58,14 @@
             
     	</header>
     	<div id="account" style="margin: 40px 76px 23px 1010px; -ms-grid-column-span: 1; -ms-grid-column: 1; -ms-grid-row-span: 1;">
-    		<img class="avatar small" id="openAccount" data-win-bind="src:avatar_url">
+    		<img src="#" class="avatar small" id="openAccount" data-win-bind="src:avatar_url">
     	</div>
+            
 
-        <section aria-label="Main content" role="main">
+        <section aria-label="Main content" role="main">                
+       
             <div id="zoom" data-win-control="WinJS.UI.SemanticZoom" data-win-options="{ initiallyZoomedOut: false }" style="height: 100%">
-                <div id="zoomedInListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi' }"></div>
+                <div id="zoomedInListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi', loadingBehaivor :'value' }"></div>            
                 <div id="zoomedOutListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi' }"></div>
             </div>
 </section>

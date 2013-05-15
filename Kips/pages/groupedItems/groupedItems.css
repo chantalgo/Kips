@@ -113,7 +113,7 @@
         width: 360px;
 padding: 2px;
 border-radius:2px;
-	background-color:rgba(185, 42, 42, 0.90);
+	background-color:#fff;
 /*background-color: #069F74;*/
 
 
@@ -145,16 +145,16 @@ border-radius:2px;
 
 @media screen and (-ms-view-state: fullscreen-landscape), screen and (-ms-view-state: fullscreen-portrait), screen and (-ms-view-state: filled) {
     .groupeditemspage .groupeditemslist .item .item-overlay {
-	background-color:rgba(185, 42, 42, 1);
+	background-color:whitesmoke;
     }
 
         .groupeditemspage .groupeditemslist .item .item-overlay .item-title {
-            color: whitesmoke;
+            color: #333;
             font-family:'Segoe UI';
         }
 
         .groupeditemspage .groupeditemslist .item .item-overlay .item-subtitle {
-            color: whitesmoke;
+            color: #9fa8b1;
         }
 }
 
