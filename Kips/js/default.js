@@ -122,12 +122,19 @@
 
         var promiseArray= [];
 
-         promiseArray[0]= WinJS.xhr({
-            headers: {"X-Kippt-Username": Kippt.username, "X-Kippt-API-Token" : Kippt.token},
+        promiseArray[0] = WinJS.xhr({
+            headers: { "X-Kippt-Username": Kippt.username, "X-Kippt-API-Token": Kippt.token },
             url: Kippt.urlRoot + "/api/account/?include_data=api_token"
-        }).then(function (r) {
-            Kippt.account = JSON.parse(r.responseText);}
-            );
+        }).done(
+       function completed(r) {
+           Kippt.account = JSON.parse(r.responseText);
+       },
+       function error(r) {
+       },
+       function progress(r) {
+           console.log("process");
+       });
+        
 
          promiseArray[1] = WinJS.xhr({
              headers: { "X-Kippt-Username": Kippt.username, "X-Kippt-API-Token": Kippt.token },

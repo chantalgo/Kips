@@ -53,6 +53,10 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="assets\idealist_sans-webfont.eot" />
+    <Content Include="assets\idealist_sans-webfont.svg" />
+    <Content Include="assets\idealist_sans-webfont.ttf" />
+    <Content Include="assets\idealist_sans-webfont.woff" />
     <Content Include="assets\ss-social-circle.eot" />
     <Content Include="assets\ss-social-circle.otf" />
     <Content Include="assets\ss-social-circle.svg" />
@@ -66,17 +70,19 @@
     <Content Include="css\ss-social-circle.css" />
     <Content Include="css\ss-standard.css" />
     <Content Include="css\style.css" />
-    <Content Include="css\stylesheet.css" />
     <Content Include="images\GitHub-Mark-120px-plus.png" />
     <Content Include="images\GitHub-Mark-32px.png" />
     <Content Include="images\GitHub-Mark-64px.png" />
+    <Content Include="images\kipsbg.svg" />
     <Content Include="images\logo.png" />
+    <Content Include="images\logowide.png" />
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
     <Content Include="js\navigator.js" />
+    <Content Include="js\script.js" />
     <Content Include="pages\login\login.css" />
     <Content Include="pages\login\login.html" />
     <Content Include="pages\login\login.js" />

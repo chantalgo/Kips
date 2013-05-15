@@ -1,8 +1,58 @@
-﻿#contenthost {
+﻿.extendedSplashScreen {
     height: 100%;
     width: 100%;
-    background-color: whitesmoke;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    text-align: center;
 }
+
+.extendedSplashScreen.hidden {
+    display: none;
+}
+
+#extendedSplashImage {
+    position: absolute;
+}
+
+#extendedSplashDescription
+{
+    position: absolute;
+    width: 100%;
+    top: calc(100% - 140px);
+    text-align: center;
+}
+
+#extendedSplashText
+{
+    font-family: 'Segoe UI Semilight';
+    font-size: 11pt;
+    text-align: center;
+    width: 75%;
+    color: #ffffff;
+}
+
+@font-face {
+    font-family: 'IdealistSans';
+    src: url('../assets/idealist_sans-webfont.eot');
+    src: url('../assets/idealist_sans-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../assets/idealist_sans-webfont.woff') format('woff'),
+         url('../assets/idealist_sans-webfont.ttf') format('truetype'),
+         url('../assets/idealist_sans-webfont.svg#idealist_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#contenthost {
+    height: 100%;
+    width: 100%; 
+    background-color: #dfe5e6;
+    /*background: url(../images/kipsbg.svg) no-repeat center center fixed;
+        background-size: cover;*/
+}
+.bg {
+       
+    }
 
 .fragment {
     /* Define a grid with rows for a banner and a body */
