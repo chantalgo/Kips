@@ -180,7 +180,9 @@
                 content: postdescription,
                 favorite: post.is_favorite,
                 notes: post.notes,
-                domain: post.url_domain
+                domain: post.url_domain,
+                comments_count: post.comments.count,
+                comments_data: post.comments.data
             });
         }
     }
