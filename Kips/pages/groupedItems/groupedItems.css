@@ -109,15 +109,29 @@
         -ms-grid-columns: 1fr;
         -ms-grid-rows: 1fr 90px;
         display: -ms-grid;
-        height: 220px;
-        width: 360px;
-padding: 2px;
-border-radius:2px;
-	background-color:#fff;
-/*background-color: #069F74;*/
-
-
+        height: 200px;
+        width: 350px;
+        /*padding: 2px;
+        border-radius:2px; */
+	    background-color:#fff;
+        /*background-color: #069F74;*/
     }
+
+        .groupeditemspage .groupeditemslist .text .item {
+            height: 95px;
+            -ms-grid-columns: 1fr;
+            -ms-grid-rows: 1fr 90px;
+            display: -ms-grid;
+            width: 350px;
+        }
+
+        .groupeditemspage .groupeditemslist .media .item {
+            height: 200px;
+            -ms-grid-columns: 1fr;
+            -ms-grid-rows: 1fr 90px;
+            display: -ms-grid;
+            width: 350px;
+        }
 
         .groupeditemspage .groupeditemslist .item .item-image {
             -ms-grid-row-span: 2;
@@ -130,22 +144,27 @@ border-radius:2px;
             -ms-grid-rows: 1fr 21px;
             display: -ms-grid;
             padding: 6px 15px 2px 15px;
+            visibility: hidden;
         }
 
-            .groupeditemspage .groupeditemslist .item .item-overlay .item-title {
+        .groupeditemspage .groupeditemslist .win-selected .item .item-overlay {
+            visibility:visible;
+        }
+
+            .groupeditemspage .groupeditemslist .item .item-title {
                 -ms-grid-row: 1;
                 overflow: hidden;
                 width: 320px;
             }
 
-            .groupeditemspage .groupeditemslist .item .item-overlay .item-subtitle {
+            .groupeditemspage .groupeditemslist .item .item-subtitle {
                 -ms-grid-row: 2;
                  width: 320px;
             }
 
 @media screen and (-ms-view-state: fullscreen-landscape), screen and (-ms-view-state: fullscreen-portrait), screen and (-ms-view-state: filled) {
     .groupeditemspage .groupeditemslist .item .item-overlay {
-	background-color:whitesmoke;
+	background-color: rgb(255,255, 255);
     }
 
         .groupeditemspage .groupeditemslist .item .item-overlay .item-title {
