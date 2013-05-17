@@ -46,6 +46,9 @@
 
     // Get the unique group corresponding to the provided group key.
     function resolveGroupReference(key) {
+        if (typeof(key) == "string") {
+            key= parseInt(key, 10);
+        }
         for (var i = 0; i < groupedItems.groups.length; i++) {
             if (groupedItems.groups.getAt(i).key === key) {
                 return groupedItems.groups.getAt(i);
