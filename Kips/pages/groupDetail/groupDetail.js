@@ -13,19 +13,13 @@
         /// <field type="WinJS.Binding.List" />
         _items: null,
 
-        navigateToGroup: function (key) {
-            console.log(key);
-           // nav.navigate("/pages/groupDetail/groupDetail.html", { groupKey: key });
-        },
 
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
 
-            console.log(options);
             var listView = element.querySelector(".itemslist").winControl;
             var group = (options && options.groupKey) ? Data.resolveGroupReference(options.groupKey) : Data.groups.getAt(0);
-
             GetAllData.addtoFeed(group.key, currentList);
 
             Data.currentList = currentList;
@@ -51,13 +45,8 @@
             this.populateMenu();
 
             //Pop-Menu
-            document.querySelector(".titlearea").addEventListener("click", showHeaderMenu, false);+
-            document.querySelectorAll(".caller")
-         /*   document.getElementById("collectionMenuItem").addEventListener("click", function () { goToSection("Collection"); }, false);
-            document.getElementById("marketplaceMenuItem").addEventListener("click", function () { goToSection("Marketplace"); }, false);
-            document.getElementById("newsMenuItem").addEventListener("click", function () { goToSection("News"); }, false);
-            document.getElementById("homeMenuItem").addEventListener("click", function () { goHome(); }, false);*/
-
+            document.querySelector(".titlearea").addEventListener("click", showHeaderMenu, false);
+            document.getElementById("goHome").addEventListener("click", goHome, false);
         },
 
         unload: function () {
@@ -66,12 +55,16 @@
 
         },
 
+        // Populate the menu under the title
         populateMenu: function (){
             var menu = document.getElementById('headerMenu').winControl;
             for (var i = 0; i < Kippt.lists.meta.total_count; i++) {
                 var list = Kippt.lists.objects[i];
-                console.log(list.id);
-                var mc = new WinJS.UI.MenuCommand(null, { id: list.id, label: list.title, extraClass: 'caller' });
+                var mc = new WinJS.UI.MenuCommand(null, {
+                    id: list.id, label: list.title, extraClass: 'caller', onclick: function () {
+                        nav.navigate("/pages/groupDetail/groupDetail.html", { groupKey:this.id });
+                    }
+                });
                 menu._addCommand(mc);
             }
         },
@@ -110,7 +103,7 @@
 
         _itemInvoked: function (args) {
             var item = this._items.getAt(args.detail.itemIndex);
-            WinJS.Navigation.navigate("/pages/itemDetail/itemDetail.html", { item: item });
+            nav.navigate("/pages/itemDetail/itemDetail.html", { item: item });
         }
     });
 
@@ -125,14 +118,8 @@
         menu.show();
     }
 
-    // Populate the menu under the title
-    function populateMenu() {
-
-    }
-
-    function navigateToGroup(key) {
-        console.log(key);
-        //nav.navigate("/pages/groupDetail/groupDetail.html", { groupKey: key });
+    function goHome() {
+        nav.navigate("/pages/groupedItems/groupedItems.html");
     }
 
 })();
