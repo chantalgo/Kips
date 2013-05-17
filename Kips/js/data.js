@@ -147,7 +147,9 @@
             var clear = "";
             try {
                 if (post.media != null && post.media.images != null && post.media.images.tile != null && post.media.images.tile.url != null) {
-                    postbg = post.media.images.tile.url;
+                    if (post.media.images.original != null && post.media.images.original.width != null && post.media.images.original.width >= 350) {
+                        postbg = post.media.images.tile.url;
+                    }
                 }
                 else {
                     postbg = null;
@@ -168,9 +170,9 @@
             }
 
 
-            if (post.url_domain == "github.com") {
+            /*if (post.url_domain == "github.com") {
                 postbg = '/images/GitHub-Mark-120px-plus.png';
-            }
+            }*/
             // Store the post info we care about in the array.
             blogPosts.push({
                 group: feed,
@@ -230,7 +232,9 @@
                 var postbg,postdescription;
                     try {
                         if (post.media != null && post.media.images != null && post.media.images.tile != null && post.media.images.tile.url != null) {
-                            postbg = post.media.images.tile.url;
+                            if (post.media.images.original != null && post.media.images.original.width != null && post.media.images.original.width >= 350) {
+                                postbg = post.media.images.tile.url;
+                            }
                         }
                         else {
                             postbg = null;
