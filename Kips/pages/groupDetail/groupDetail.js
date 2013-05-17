@@ -3,6 +3,7 @@
 
     var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
     var ui = WinJS.UI;
+    var nav = WinJS.Navigation;
     var key;
     var mediumGray = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXY5g8dcZ/AAY/AsAlWFQ+AAAAAElFTkSuQmCC";
     var currentList = new WinJS.Binding.List();
@@ -12,10 +13,16 @@
         /// <field type="WinJS.Binding.List" />
         _items: null,
 
+        navigateToGroup: function (key) {
+            console.log(key);
+           // nav.navigate("/pages/groupDetail/groupDetail.html", { groupKey: key });
+        },
+
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
 
+            console.log(options);
             var listView = element.querySelector(".itemslist").winControl;
             var group = (options && options.groupKey) ? Data.resolveGroupReference(options.groupKey) : Data.groups.getAt(0);
 
@@ -41,19 +48,32 @@
             this._initializeLayout(listView, Windows.UI.ViewManagement.ApplicationView.value);
             listView.element.focus();
 
+            this.populateMenu();
 
             //Pop-Menu
-            document.querySelector(".titlearea").addEventListener("click", showHeaderMenu, false);
-            document.getElementById("collectionMenuItem").addEventListener("click", function () { goToSection("Collection"); }, false);
+            document.querySelector(".titlearea").addEventListener("click", showHeaderMenu, false);+
+            document.querySelectorAll(".caller")
+         /*   document.getElementById("collectionMenuItem").addEventListener("click", function () { goToSection("Collection"); }, false);
             document.getElementById("marketplaceMenuItem").addEventListener("click", function () { goToSection("Marketplace"); }, false);
             document.getElementById("newsMenuItem").addEventListener("click", function () { goToSection("News"); }, false);
-            document.getElementById("homeMenuItem").addEventListener("click", function () { goHome(); }, false);
+            document.getElementById("homeMenuItem").addEventListener("click", function () { goHome(); }, false);*/
+
         },
 
         unload: function () {
             //this._items.dispose();
             this._items.splice(0, this._items.length);
 
+        },
+
+        populateMenu: function (){
+            var menu = document.getElementById('headerMenu').winControl;
+            for (var i = 0; i < Kippt.lists.meta.total_count; i++) {
+                var list = Kippt.lists.objects[i];
+                console.log(list.id);
+                var mc = new WinJS.UI.MenuCommand(null, { id: list.id, label: list.title, extraClass: 'caller' });
+                menu._addCommand(mc);
+            }
         },
 
         // This function updates the page layout in response to viewState changes.
@@ -105,13 +125,14 @@
         menu.show();
     }
 
-    // When navigating using the header menu for sections, change the subtitle to reflect the current pivot
-    function goToSection(section) {
-        WinJS.log && WinJS.log("You are viewing the " + section + " section.", "sample", "status");
+    // Populate the menu under the title
+    function populateMenu() {
+
     }
 
-    // Hide the subtitle if no pivot is being used
-    function goHome() {
-        WinJS.log && WinJS.log("You are home.", "sample", "status");
+    function navigateToGroup(key) {
+        console.log(key);
+        //nav.navigate("/pages/groupDetail/groupDetail.html", { groupKey: key });
     }
+
 })();
