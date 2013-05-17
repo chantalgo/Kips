@@ -45,7 +45,7 @@
         <div class="zoomedOutItemContainer" >
             <h2 class="zoomedOutGroupTitle" data-win-bind="textContent: title; alt: title"> </h2>
             <span class="ss-standard"></span>
-            <!--<div class="zoomedOutItemCount" data-win-bind="textContent: recipesCount;"></div>-->
+            <div class="zoomedOutItemCount" data-win-bind="textContent: itemsCount;"></div>
         </div>
 </div>
 
@@ -65,8 +65,8 @@
         <section aria-label="Main content" role="main">                
        
             <div id="zoom" data-win-control="WinJS.UI.SemanticZoom" data-win-options="{ initiallyZoomedOut: false }" style="height: 100%">
-                <div id="zoomedInListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi', loadingBehaivor :'value' }"></div>            
-                <div id="zoomedOutListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi' }"></div>
+                <div id="zoomedInListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi' }"></div>            
+                <div id="zoomedOutListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi'}"></div>
             </div>
 </section>
 

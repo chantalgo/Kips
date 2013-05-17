@@ -86,7 +86,8 @@
                 updated: obj.created,
                 backgroundImage: lightGray,
                 acquireSyndication: acquireSyndication,
-                dataPromise: null
+                dataPromise: null,
+                itemsCount: 0
             };
 
         };
@@ -129,6 +130,8 @@
     function getItemsFromJSON(articleSyndication, blogPosts, feed) {
         var posts = articleSyndication.objects;
         var max;
+        feed.itemsCount = articleSyndication.meta.total_count;
+
         if (articleSyndication.meta.total_count > 6) {
             max = 6;
         }
@@ -176,7 +179,8 @@
                 url: post.url,
                 content: postdescription,
                 favorite: post.is_favorite,
-                notes: post.notes
+                notes: post.notes,
+                domain: post.url_domain
             });
         }
     }
@@ -208,6 +212,7 @@
         }
 
     function getItemsFromJSONAll(articleSyndication, currentList, feed) {
+    
             var posts = articleSyndication.objects;
             var max;
             if (articleSyndication.meta.total_count > 200) {
@@ -255,7 +260,10 @@
                     url: post.url,
                     content: postdescription,
                     favorite: post.is_favorite,
-                    notes: post.notes 
+                    notes: post.notes,
+                    domain: post.url_domain,
+                    comments_count: post.comments.count,
+                    comments_data: post.comments.data
                 });
             }
             Data.currentList = currentList;
