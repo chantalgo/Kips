@@ -147,11 +147,11 @@
                     postbg = post.media.images.tile.url;
                 }
                 else {
-                    postbg = mediumGray;
+                    postbg = null;
                 }
             }
             catch (e) {
-                postbg= mediumGray;
+                postbg= null;
             }
             try {
                 if (post.media != null && post.media.description != null) {
@@ -230,11 +230,11 @@
                             postbg = post.media.images.tile.url;
                         }
                         else {
-                            postbg = mediumGray;
+                            postbg = null;
                         }
                     }
                     catch (e) {
-                        postbg = mediumGray;
+                        postbg = null;
                     }
                     try {
                         if (post.media != null && post.media.description != null) {
