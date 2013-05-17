@@ -6,6 +6,56 @@
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
 
+    function itemTemplateRenderer(itemPromise) {
+        return itemPromise.then(function (currentItem) {
+            var content;
+            var templateClass = 'itemTextTemplate';
+
+            if (currentItem.data.backgroundImage != null) {
+                templateClass = 'itemMultimediaTemplate';
+            }
+
+            // Grab the default item template used on the groupeditems page.
+            content = document.getElementsByClassName(templateClass)[0];
+            var result = content.cloneNode(true);
+
+            // need to implement logic on controlling the class name
+
+            result.className = 'text';
+            if (currentItem.data.backgroundImage != null) {
+                result.className = 'media';
+            }
+
+            // Because we used a WinJS template, we need to strip off some attributes 
+            // for it to render.
+            result.attributes.removeNamedItem("data-win-control");
+            result.attributes.removeNamedItem("style");
+            result.style.overflow = "hidden";
+
+            // Because we're doing the rendering, we need to put the data into the item.
+            // We can't use databinding.
+            
+            result.getElementsByClassName("item-title")[0].textContent = currentItem.data.title;
+            result.getElementsByClassName("item-subtitle")[0].textContent = currentItem.data.url;
+
+            if (result.className === 'media')
+            {
+                result.getElementsByClassName("item-image")[0].src = currentItem.data.backgroundImage;
+            }
+
+            return result;
+        });
+    }
+
+    function groupInfo() {
+        return {
+            enableCellSpanning: true,
+            cellWidth: 350,
+            cellHeight: 95
+        };
+    }
+
+
     ui.Pages.define("/pages/groupedItems/groupedItems.html", {
         // Navigates to the groupHeaderPage. Called from the groupHeaders,
         // keyboard shortcut and iteminvoked.
@@ -15,6 +65,7 @@
 
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
+
         ready: function (element, options) {
             var semanticZoom = element.querySelector("#zoom").winControl;
             var zoomedInListView = element.querySelector("#zoomedInListView").winControl;
@@ -26,7 +77,7 @@
             zoomedOutListView.layout = new ui.GridLayout({ groupHeaderPosition: "top" });
 
             zoomedInListView.groupHeaderTemplate = element.querySelector(".headertemplate");
-            zoomedInListView.itemTemplate = element.querySelector(".itemtemplate");
+            //zoomedInListView.itemTemplate = element.querySelector(".itemtemplate");
             zoomedInListView.oniteminvoked = this._itemInvoked.bind(this);
 
             // disabling and hiding backbutton
@@ -47,6 +98,7 @@
                 zoomedInListView.groupDataSource = null;
                 zoomedInListView.layout = new ui.ListLayout();
                 semanticZoom.locked = true;
+                zoomedInListView.itemTemplate = element.querySelector(".itemtemplate");
             }
 
             else {
@@ -54,8 +106,9 @@
                 // to show items and groups and unlock the SemanticZoom control
                 zoomedInListView.itemDataSource = Data.items.dataSource;
                 zoomedInListView.groupDataSource = Data.groups.dataSource;
-                zoomedInListView.layout = new ui.GridLayout({ groupHeaderPosition: "top" });
+                zoomedInListView.layout = new ui.GridLayout({ groupHeaderPosition: "top", groupInfo: groupInfo });
                 semanticZoom.locked = false;
+                zoomedInListView.itemTemplate = itemTemplateRenderer;
             }
 
             semanticZoom.element.focus();
@@ -82,7 +135,8 @@
             else {
                 zoomedInListView.itemDataSource = Data.items.dataSource;
                 zoomedInListView.groupDataSource = Data.groups.dataSource;
-                zoomedInListView.layout = new ui.GridLayout({ groupHeaderPosition: "top" });
+                zoomedInListView.itemTemplate = itemTemplateRenderer;
+                zoomedInListView.layout = new ui.GridLayout({ groupHeaderPosition: "top", groupInfo: groupInfo });
                 semanticZoom.locked = false;
 
             }
