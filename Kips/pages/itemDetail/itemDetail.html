@@ -12,6 +12,8 @@
     <link href="/css/default.css" rel="stylesheet" />
     <link href="/pages/itemDetail/itemDetail.css" rel="stylesheet" />
     <script src="/js/data.js"></script>
+    <script src="/js/timespan.js"></script>
+    <script src="/js/showdown.js"></script>
     <script src="/pages/itemDetail/itemDetail.js"></script>
 </head>
 <body>
@@ -19,20 +21,41 @@
     <div class="itemdetailpage fragment">
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
-            <h1 class="titlearea win-type-ellipsis">
-                <span class="pagetitle"></span>
-            </h1>
+            <div class="titlearea win-type-ellipsis">
+                <h1 class="pagetitle"></h1>
+                <h4 class="pageinfo">Posted <time class="postdate" datetime=""></time></h4>
+            </div>
         </header>
         <div class="content" aria-label="Main content" role="main">
             <article>
-                <div>
-                    <header>
-                        <h2 class="item-title"></h2>
-                        <h4 class="item-subtitle"></h4>
-                    </header>
-                    <img class="item-image" src="#" />
-                    <div class="item-content"></div>
-                </div>
+                <section id="info">
+                    <div>
+                        <header>
+                            <h2>Details</h2>
+                        </header>
+                        <h3 class="item-title"></h3>
+                        <img class="item-image" src="#" />
+                        <div class="item-content"></div>
+                        <p>Full text available at <a class="item-url" href="#" title="#"></a></p>
+                    </div>
+                </section>
+                <section id="notes">
+                    <div>
+                        <header>
+                            <h2>Notes</h2>
+                        </header>
+                        <div class="notes-content">
+
+                        </div>
+                    </div>
+                </section>
+                <!--<section id="comments">
+                    <div>
+                        <header>
+                            <h2>Comments</h2>
+                        </header>
+                    </div>
+                </section>-->
             </article>
         </div>
     </div>

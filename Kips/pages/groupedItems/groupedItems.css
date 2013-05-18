@@ -156,6 +156,11 @@
                 color: #ffffff;
             }
 
+            .groupeditemspage .groupeditemslist .text[data-domain *= 'twitter.com'] {
+                background-image: url(../../images/domain-bgs/twitter.png);
+                color: #ffffff;
+            }
+
             .groupeditemspage .groupeditemslist .text[data-domain *= 'channel9.msdn.com'] {
                 background-image: url(../../images/domain-bgs/channel9.png);
                 color: #ffffff;

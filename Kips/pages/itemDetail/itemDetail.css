@@ -11,28 +11,40 @@
 
     .itemdetailpage .content article {
         /* Define a multi-column, horizontally scrolling article by default. */
-        column-fill: auto;
-        column-gap: 80px;
-        column-width: 480px;
-        height: calc(100% - 183px);
-        margin-left: 120px;
-        margin-right: 120px;
-        margin-top: 133px;
-        width: 480px;
+        
+
+        -ms-grid-columns: 400px 80px 400px 80px 1fr;
+        display: -ms-grid;
     }
 
-        .itemdetailpage .content article header .item-title {
+        .itemdetailpage .content article section {
+            column-fill: auto;
+            column-gap: 80px;
+            column-width: 400px;
+            height: 100%;
+        }
+
+        .itemdetailpage .content article #info {
+            -ms-grid-column: 1;
+        }
+
+        .itemdetailpage .content article #notes {
+            -ms-grid-column: 3;
+        }
+
+       /* .itemdetailpage .content article #comments {
+            -ms-grid-column: 5;
+        } */
+
+
+        .itemdetailpage .content article header {
             margin-bottom: 19px;
         }
 
-        .itemdetailpage .content article header .item-subtitle {
-            margin-bottom: 16px;
-            margin-top: 0;
-        }
-
         .itemdetailpage .content article .item-image {
-            height: 240px;
-            width: 460px;
+            height: 200px;
+            width: 350px;
+
         }
 
         .itemdetailpage .content article .item-content p {

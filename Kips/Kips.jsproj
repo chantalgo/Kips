@@ -75,6 +75,7 @@
     <Content Include="images\domain-bgs\github.png" />
     <Content Include="images\domain-bgs\microsoft.png" />
     <Content Include="images\domain-bgs\nytimes.png" />
+    <Content Include="images\domain-bgs\twitter.png" />
     <Content Include="images\domain-bgs\url.png" />
     <Content Include="images\GitHub-Mark-120px-plus.png" />
     <Content Include="images\GitHub-Mark-32px.png" />
@@ -90,6 +91,8 @@
     <Content Include="js\default.js" />
     <Content Include="js\navigator.js" />
     <Content Include="js\script.js" />
+    <Content Include="js\showdown.js" />
+    <Content Include="js\timespan.js" />
     <Content Include="pages\contracts\receive\shareTarget.css" />
     <Content Include="pages\contracts\receive\shareTarget.html" />
     <Content Include="pages\contracts\receive\shareTarget.js" />
