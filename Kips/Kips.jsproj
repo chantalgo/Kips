@@ -90,6 +90,7 @@
     <Content Include="js\default.js" />
     <Content Include="js\navigator.js" />
     <Content Include="js\script.js" />
+    <Content Include="js\showdown.js" />
     <Content Include="js\timespan.js" />
     <Content Include="pages\contracts\receive\shareTarget.css" />
     <Content Include="pages\contracts\receive\shareTarget.html" />
