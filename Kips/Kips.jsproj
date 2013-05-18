@@ -75,6 +75,7 @@
     <Content Include="images\domain-bgs\github.png" />
     <Content Include="images\domain-bgs\microsoft.png" />
     <Content Include="images\domain-bgs\nytimes.png" />
+    <Content Include="images\domain-bgs\twitter.png" />
     <Content Include="images\domain-bgs\url.png" />
     <Content Include="images\dribbble-ball.png" />
     <Content Include="images\GitHub-Mark-120px-plus.png" />

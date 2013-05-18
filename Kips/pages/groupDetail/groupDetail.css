@@ -105,6 +105,11 @@
                 color: #ffffff;
             }
 
+            .groupdetailpage .itemslist .text[data-domain *= 'twitter.com'] {
+                background-image: url(../../images/domain-bgs/twitter.png);
+                color: #ffffff;
+            }
+
             .groupdetailpage .itemslist .text[data-domain *= 'channel9.msdn.com'] {
                 background-image: url(../../images/domain-bgs/channel9.png);
                 color: #ffffff;
