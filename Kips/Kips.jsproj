@@ -70,6 +70,13 @@
     <Content Include="css\ss-social-circle.css" />
     <Content Include="css\ss-standard.css" />
     <Content Include="css\style.css" />
+    <Content Include="images\domain-bgs\channel9.png" />
+    <Content Include="images\domain-bgs\dribbble.png" />
+    <Content Include="images\domain-bgs\github.png" />
+    <Content Include="images\domain-bgs\microsoft.png" />
+    <Content Include="images\domain-bgs\nytimes.png" />
+    <Content Include="images\domain-bgs\url.png" />
+    <Content Include="images\dribbble-ball.png" />
     <Content Include="images\GitHub-Mark-120px-plus.png" />
     <Content Include="images\GitHub-Mark-32px.png" />
     <Content Include="images\GitHub-Mark-64px.png" />

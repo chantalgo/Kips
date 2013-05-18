@@ -37,4 +37,10 @@ padding:0;
 margin:0;
 }
 
+.win-selectionborder {
+    color: #e03500;
+}
 
+.win-selectioncheckmarkbackground {
+    color: #e03500;
+}

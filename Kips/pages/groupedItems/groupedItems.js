@@ -32,15 +32,20 @@
             result.attributes.removeNamedItem("style");
             result.style.overflow = "hidden";
 
+
             // Because we're doing the rendering, we need to put the data into the item.
             // We can't use databinding.
             
             result.getElementsByClassName("item-title")[0].textContent = currentItem.data.title;
-            result.getElementsByClassName("item-subtitle")[0].textContent = currentItem.data.url;
+            result.getElementsByClassName("item-subtitle")[0].textContent = currentItem.data.domain;
+
+            result.setAttribute('data-domain', currentItem.data.domain);
+            result.setAttribute('data-url', currentItem.data.url);
 
             if (result.className === 'media')
             {
                 result.getElementsByClassName("item-image")[0].src = currentItem.data.backgroundImage;
+                result.getElementsByClassName("item-image")[0].alt = currentItem.data.title;
             }
 
             return result;
