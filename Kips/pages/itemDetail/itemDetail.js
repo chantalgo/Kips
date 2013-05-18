@@ -5,7 +5,12 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
+
             var item = options.item;
+
+            WinJS.Namespace.define("Share", {
+                item: item
+            });
 
             var timeago = new Date(item.pubDate * 1000).timeSince();
             if (timeago != undefined) {
@@ -58,9 +63,22 @@
 
             //appbar.winControl.hideCommands([textSize, markItem]);
 
+            registerForShare();
 
         }
     });
+
+    function registerForShare() {
+        var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.getForCurrentView();
+        dataTransferManager.addEventListener("datarequested", shareLinkHandler);
+    }
+
+    function shareLinkHandler(e) {
+        var request = e.request;
+        request.data.properties.title = Share.item.title;
+        request.data.properties.description = Share.item.content;
+        request.data.setUri(new Windows.Foundation.Uri(Share.item.url));
+    }
 
 })();
  
