@@ -58,40 +58,111 @@
             overflow: hidden;
         }
 
+    
+
     .groupdetailpage .itemslist .win-container {
-        margin-bottom: 15px;
-        margin-left: 30px;
-        margin-right: 30px;
-        padding: 7px;
+        margin: 5px;
     }
 
-    .groupdetailpage .itemslist .item {
-        -ms-grid-columns: 110px 1fr;
-        -ms-grid-rows: 1fr;
-        display: -ms-grid;
-        height: 110px;
-        width: 470px;
-    }
-
-        .groupdetailpage .itemslist .item .item-info {
-            -ms-grid-column: 2;
-            margin-left: 10px;
-            margin-right: 10px;
+    .groupdetailpage .itemslist .win-item {
+            width: 350px;
+            -ms-grid-columns: 1fr;
+            -ms-grid-rows: 1fr 60px;
+            display: -ms-grid;
+            background-color: #ffffff;
         }
 
-            .groupdetailpage .itemslist .item .item-info .item-title {
-                margin-top: 4px;
-                max-height: 20px;
+        .groupdetailpage .itemslist .text {
+            height: 95px;
+            padding: 10px 5px;
+            box-sizing: border-box;
+        }
+
+            .groupdetailpage .itemslist .text[data-domain] {
+                padding-left: 50px;
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                background-position-y: center;
+                background-position-x: center;
+                background-origin: border-box;
+            }
+
+            .groupdetailpage .itemslist .text[data-domain *= 'dribbble.com'] {
+                 background-image: url(../../images/domain-bgs/dribbble.png);
+                 color: #ffffff;
+            }
+
+            .groupdetailpage .itemslist .text[data-domain *= 'github.com'] {
+                background-image: url(../../images/domain-bgs/github.png);
+            }
+
+            .groupdetailpage .itemslist .text[data-domain *= 'github.io'] {
+                background-image: url(../../images/domain-bgs/github.png);
+            }
+
+            .groupdetailpage .itemslist .text[data-domain *= 'nytimes.com'] {
+                background-image: url(../../images/domain-bgs/nytimes.png);
+                color: #ffffff;
+            }
+
+            .groupdetailpage .itemslist .text[data-domain *= 'channel9.msdn.com'] {
+                background-image: url(../../images/domain-bgs/channel9.png);
+                color: #ffffff;
+            }
+
+            .groupdetailpage .itemslist .text[data-domain *= 'microsoft.com'] {
+                background-image: url(../../images/domain-bgs/microsoft.png);
+            }
+
+            .groupdetailpage .itemslist .text .item {
+                -ms-grid-columns: 1fr;
+                -ms-grid-row: 1;
+                -ms-grid-rows: 1fr 50%;
+                -ms-grid-columns: 1;
+                display: -ms-grid;
+                height: 85px;
                 overflow: hidden;
             }
 
-            .groupdetailpage .itemslist .item .item-info .item-subtitle {
-                opacity: 0.6;
+               .groupdetailpage .itemslist .text .item .item-title {
+                    -ms-grid-row: 1;
+                    -ms-grid-row-align: end;
+                    font-weight: bold;
+                }
+
+                .groupdetailpage .itemslist .text .item .item-subtitle {
+                    -ms-grid-row: 2;
+                    -ms-grid-row-align: start;
+                }
+
+        .groupdetailpage .itemslist .media {
+            height: 200px;
+            position: relative;
+        }
+
+        .groupdetailpage .itemslist .media .item-overlay {
+            position: absolute;
+            bottom: 0;
+            padding: 6px 15px 6px 15px;
+            box-sizing: border-box;
+            visibility: hidden;
+            background-color: #ffffff;
+            color: #000000;
+            opacity: 0.9;
+        }
+
+        .groupdetailpage .itemslist .win-selected .media .item-overlay {
+            visibility:visible;
+        }
+
+            .groupdetailpage .itemslist .media .item-title {
+                overflow: hidden;
+                width: 320px;
+                font-weight: bold;
             }
 
-            .groupdetailpage .itemslist .item .item-info .item-description {
-                max-height: 60px;
-                overflow: hidden;
+            .groupdetailpage .itemslist .media .item-subtitle {
+                 width: 320px;
             }
 
 @media screen and (-ms-view-state: snapped) {

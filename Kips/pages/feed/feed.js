@@ -7,6 +7,59 @@
     var nav = WinJS.Navigation;
     var userFeedPosts = new WinJS.Binding.List();
 
+    function itemTemplateRenderer(itemPromise) {
+        return itemPromise.then(function (currentItem) {
+            var content;
+            var templateClass = 'itemTextTemplate';
+
+            if (currentItem.data.backgroundImage != null) {
+                templateClass = 'itemMultimediaTemplate';
+            }
+
+            // Grab the default item template used on the groupeditems page.
+            content = document.getElementsByClassName(templateClass)[0];
+            var result = content.cloneNode(true);
+
+            // need to implement logic on controlling the class name
+
+            result.className = 'text';
+            if (currentItem.data.backgroundImage != null) {
+                result.className = 'media';
+            }
+
+            // Because we used a WinJS template, we need to strip off some attributes 
+            // for it to render.
+            result.attributes.removeNamedItem("data-win-control");
+            result.attributes.removeNamedItem("style");
+            result.style.overflow = "hidden";
+
+
+            // Because we're doing the rendering, we need to put the data into the item.
+            // We can't use databinding.
+
+            result.getElementsByClassName("item-title")[0].textContent = currentItem.data.title;
+            result.getElementsByClassName("item-subtitle")[0].textContent = currentItem.data.domain;
+
+            result.setAttribute('data-domain', currentItem.data.domain);
+            result.setAttribute('data-url', currentItem.data.url);
+
+            if (result.className === 'media') {
+                result.getElementsByClassName("item-image")[0].src = currentItem.data.backgroundImage;
+                result.getElementsByClassName("item-image")[0].alt = currentItem.data.title;
+            }
+
+            return result;
+        });
+    }
+
+    function groupInfo() {
+        return {
+            enableCellSpanning: true,
+            cellWidth: 350,
+            cellHeight: 95
+        };
+    }
+
     WinJS.UI.Pages.define("/pages/feed/feed.html", {
         _items: null,
 
@@ -21,7 +74,7 @@
             this._items = userFeedPosts;
 
             listView.itemDataSource = userFeedPosts.dataSource;
-            listView.itemTemplate = element.querySelector(".itemtemplate");
+            listView.itemTemplate = itemTemplateRenderer;
             listView.oniteminvoked = this._itemInvoked.bind(this);
 
             this._initializeLayout(listView, Windows.UI.ViewManagement.ApplicationView.value);
@@ -64,7 +117,7 @@
             if (viewState === appViewState.snapped) {
                 listView.layout = new ui.ListLayout();
             } else {
-                listView.layout = new ui.GridLayout({ groupHeaderPosition: "left" });
+                listView.layout = new ui.GridLayout({ groupHeaderPosition: "left", groupInfo: groupInfo });
             }
         },
 

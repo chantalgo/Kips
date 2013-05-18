@@ -32,6 +32,23 @@
         </div>
     </div>
 
+    <div class="itemMultimediaTemplate" data-win-control="WinJS.Binding.Template" data-win-design-locked="true">
+        <div class="item">
+            <img class="item-image" src="#" />
+            <div class="item-overlay">
+                <h4 class="item-title"></h4>
+                <h6 class="item-subtitle win-type-ellipsis"></h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="itemTextTemplate" data-win-control="WinJS.Binding.Template" data-win-design-locked="true">
+        <div class="item">
+                <h4 class="item-title win-type-ellipsis"></h4>
+                <h6 class="item-subtitle win-type-ellipsis"></h6>
+        </div>
+    </div>
+
     <!-- The content that will be loaded and displayed. -->
     <div class="groupdetailpage fragment">
         <header aria-label="Header content" role="banner">
@@ -42,7 +59,7 @@
             </h1>
         </header>
         <section aria-label="Main content" role="main">
-            <div class="itemslist win-selectionstylefilled" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
+            <div class="itemslist win-selectionstylefilled" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi' }"></div>
         </section>
     </div>
 
