@@ -32,6 +32,9 @@
                     for (var i = 0; i < items._value.length; i++) {
                         var id = items._value[0].data.key;
                         GetAllData.deleteClip(id);
+                        //Modify to pop ff listview
+                        //var item = Data.items.getAt(id);
+                        console.log(item);
                         //Push into promise array, and then join, and then return 
                     }
                 } else {
