@@ -20,6 +20,34 @@
         limitedblogPosts: null
     })
 
+    function deleteClip() {
+        console.log(WinJS.Navigation.location);
+        switch (WinJS.Navigation.location) {
+            case "/pages/groupedItems/groupedItems.html":
+                console.log();
+                var listView = document.querySelector(".groupeditemslist").winControl;
+                var count = listView.selection.count();
+                if (count > 0) {
+                    var items = listView.selection.getItems();
+                    for (var i = 0; i < items._value.length; i++) {
+                        var id = items._value[0].data.key;
+                        GetAllData.deleteClip(id);
+                        //Push into promise array, and then join, and then return 
+                    }
+                } else {
+                    //Nothing to delete!!
+                    console.log("Nothing to delete");
+                }
+            case "/pages/groupDetail/groupDetail.html":
+
+            case "/pages/itemDetail/itemDetail.html":
+
+        }
+    }
+
+    WinJS.Namespace.define("Appbar", {
+        deleteClip: deleteClip
+    })
     app.addEventListener("activated", function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
@@ -30,11 +58,10 @@
                 document.getElementById("goHome").onclick = goHome;
                 document.getElementById("goFeed").onclick = goFeed;
                 document.getElementById("goFavorites").onclick = goFavorites;
-                document.getElementById("goAllLists").onclick = goAllLists;
+                //document.getElementById("goAllLists").onclick = goAllLists;
 
 
-                document.getElementById("deleteList").onclick = deleteList;
-                document.getElementById("deleteClip").onclick = deleteClip;
+                document.getElementById("deleteClip").onclick = Appbar.deleteClip;
                 document.getElementById("addClip").onclick = addClip;
                 document.getElementById("addNote").onclick = addNote;
                 document.getElementById("addList").onclick = addList;
@@ -175,9 +202,10 @@
         nav.navigate("/pages/favorites/favorites.html");
     }
     
-    function goAllLists() {
-       // nav.navigate("/pages/allLists/allLists.html");
+    /*function goAllLists() {
+        nav.navigate("/pages/allLists/allLists.html");
     }
-    
+*/
+
     app.start();
 })();

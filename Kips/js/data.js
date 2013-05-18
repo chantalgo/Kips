@@ -21,6 +21,27 @@
         function groupDataSelector(item) { return item.group; }
     );
 
+   /* var letterItems = groupedItems.groups.createGrouped(getGroupKey, getGroupData, compareGroups);
+
+    // Sorts the groups
+    function compareGroups(leftKey, rightKey) {
+        return leftKey.charCodeAt(0) - rightKey.charCodeAt(0);
+    }
+
+    // Returns the group key that an item belongs to
+    function getGroupKey(dataItem) {
+        console.log(dataItem);
+
+        console.log(dataItem.title.toUpperCase().charAt(0));
+        return dataItem.group.title.toUpperCase().charAt(0);
+    }
+
+    // Returns the title for a group
+    function getGroupData(dataItem) {
+        return  {
+            title: dataItem.group.title.toUpperCase().charAt(0)
+        }}
+        */
     WinJS.Namespace.define("Data", {
         items: groupedItems,
         groups: groupedItems.groups,
@@ -29,7 +50,8 @@
         resolveGroupReference: resolveGroupReference,
         resolveItemReference: resolveItemReference,
         resolveItemReferenceL: resolveItemReferenceL,
-        currentList: null
+        currentList: null,
+        //letterItems: letterItems.groups
     });
 
     Kippt.blogPosts = blogPosts;
@@ -367,8 +389,16 @@
             }
         }
 
+    function deleteClip(id) {
+        return WinJS.xhr({
+            type: "DELETE",
+            headers: { "X-Kippt-Username": Kippt.username, "X-Kippt-API-Token": Kippt.token },
+            url: Kippt.urlRoot+"/api/clips/"+id})
+    }
+
         WinJS.Namespace.define("GetAllData", {
             addtoFeed: addtoFeed,
-            getUserFeed: getUserFeed
+            getUserFeed: getUserFeed,
+            deleteClip: deleteClip
         })
 })();

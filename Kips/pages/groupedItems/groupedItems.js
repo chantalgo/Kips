@@ -96,7 +96,6 @@
             WinJS.Binding.processAll(account, Kippt.account);
             document.getElementById("openAccount").addEventListener("click", accountInfo, false);
 
-
             if (appView.value === appViewState.snapped) {
                 // If the app is snapped, configure the zoomed-in ListView
                 // to show groups and lock the SemanticZoom control

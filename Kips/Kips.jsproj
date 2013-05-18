@@ -76,7 +76,6 @@
     <Content Include="images\domain-bgs\microsoft.png" />
     <Content Include="images\domain-bgs\nytimes.png" />
     <Content Include="images\domain-bgs\url.png" />
-    <Content Include="images\dribbble-ball.png" />
     <Content Include="images\GitHub-Mark-120px-plus.png" />
     <Content Include="images\GitHub-Mark-32px.png" />
     <Content Include="images\GitHub-Mark-64px.png" />
@@ -86,6 +85,7 @@
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
+    <Content Include="images\circle.svg" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
     <Content Include="js\navigator.js" />
@@ -96,10 +96,8 @@
     <Content Include="pages\contracts\search\searchResults.css" />
     <Content Include="pages\contracts\search\searchResults.html" />
     <Content Include="pages\contracts\search\searchResults.js" />
-    <Content Include="pages\favorites\favorites.css" />
     <Content Include="pages\favorites\favorites.html" />
     <Content Include="pages\favorites\favorites.js" />
-    <Content Include="pages\feed\feed.css" />
     <Content Include="pages\feed\feed.html" />
     <Content Include="pages\feed\feed.js" />
     <Content Include="pages\login\login.css" />
@@ -115,6 +113,9 @@
     <Content Include="pages\groupedItems\groupedItems.html" />
     <Content Include="pages\groupedItems\groupedItems.js" />
     <Content Include="default.html" />
+    <Content Include="pages\allLists\allLists.css" />
+    <Content Include="pages\allLists\allLists.html" />
+    <Content Include="pages\allLists\allLists.js" />
     <Content Include="pages\settingsCharm\accountInfo\accountInfo.css" />
     <Content Include="pages\settingsCharm\accountInfo\accountInfo.html" />
     <Content Include="pages\settingsCharm\accountInfo\accountInfo.js" />

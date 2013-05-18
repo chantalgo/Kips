@@ -1,13 +1,28 @@
-﻿#topBar {
-height:150px;
+﻿@font-face {
+    font-family: 'idealist';
+    src: url('../assets/idealist_sans-webfont.eot');
+    src: url('../assets/idealist_sans-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../assets/idealist_sans-webfont.woff') format('woff'),
+         url('../assets/idealist_sans-webfont.ttf') format('truetype'),
+         url('../assets/idealist_sans-webfont.svg#idealist_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.titlearea {
+    text-transform:lowercase;
+    font-family: "idealist";
+    color: rgba(204,51,51,255);
+
+}
+
+#topBar {
 padding: 20px;
 }
 
 .topBarItem {
     display:inline-block;
-height: 80%;
-background-color: #22262e;
-color:white;
 padding: 10px;
 margin: 10px;
 }

@@ -17,13 +17,12 @@
 <body>
 
     <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/pages/login/login.html'}"></div>
-    <div id="appbar" data-win-control="WinJS.UI.AppBar">
-        <button id="deleteList" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'deleteList', section:'selection', label:'Delete List', icon:'delete'}"></button>
+    <div id="appbar" data-win-control="WinJS.UI.AppBar" data-win-options="{sticky: true}">
         <button id="deleteClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'deleteCLip', section:'selection', label:'Delete Clip', icon:'delete'}"></button>
-        <button id="addClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addClip', section:'global', label:'Text size', icon:'add'}"></button>
-        <button id="addNote" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addNote', section:'global', label:'Text size', icon:'page'}"></button>
-        <button id="addList" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addList', section:'global', label:'Text size', icon:'list'}"></button>
-        <button id="editClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'editClip', section:'selection', label:'Text size', icon:'edit'}"></button>
+        <button id="addClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addClip', section:'global', label:'Edit Clip', icon:'add'}"></button>
+        <button id="addNote" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addNote', section:'global', label:'Add Link', icon:'page'}"></button>
+        <button id="addList" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addList', section:'global', label:'Add Note', icon:'list'}"></button>
+        <button id="editClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'editClip', section:'selection', label:'Add List', icon:'edit'}"></button>
     </div>
 
     <div id="confirmFlyout" data-win-control="WinJS.UI.Flyout" aria-label="{Confirm purchase flyout}">
@@ -44,10 +43,10 @@
 
     <div id="topBar" data-win-control="WinJS.UI.AppBar" aria-label="Navigation Bar"
         data-win-options="{layout:'custom',placement:'top'}">
-        <div id="goHome" class="topBarItem">Home</div>
-        <div id="goFeed" class="topBarItem">Feed</div>
-        <div id="goFavorites" class="topBarItem">Favorites</div>
-        <div id="goAllLists" class="topBarItem" >All Lists</div>
+        <h2 id="goHome" class="topBarItem">Home</h2>
+        <h2 id="goFeed" class="topBarItem">Feed</h2>
+        <h2 id="goFavorites" class="topBarItem">Favorites</h2>
+        <!--<div id="goAllLists" class="topBarItem" >All Lists</div>-->
     </div>
 </body>
 </html>

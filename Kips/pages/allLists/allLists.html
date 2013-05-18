@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>allLists</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+    
+    <link href="/css/default.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/ss-standard.css" rel="stylesheet" />
+    <script src="/js/data.js"></script>
+    <link href="allLists.css" rel="stylesheet" />
+    <script src="allLists.js"></script>
+</head>
+<body>
+        <div class="headertemplate" data-win-control="WinJS.Binding.Template" data-win-design-locked="true">
+        <button class="group-header win-type-x-large win-type-interactive" data-win-bind="groupKey: key"
+            onclick="Application.navigator.pageControl.navigateToGroup(event.srcElement.groupKey)" role="link" tabindex="-1" type="button">
+            <span class="group-title win-type-ellipsis" data-win-bind="textContent: title"></span>
+            <span class="group-chevron"></span>
+        </button>
+    </div>
+
+        <div class="zoomedInItemTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="zoomedIntItemContainer">
+            <h2 class="zoomedInGroupTitle" data-win-bind="textContent: title; alt: title"></h2>
+            <span class="ss-standard"></span>
+            <div class="zoomedInItemCount" data-win-bind="textContent: itemsCount;"></div>
+        </div>
+    </div>
+
+        <div class="zoomedOutItemTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="zoomedOutItemContainer">
+            <h2 class="zoomedOutGroupTitle" data-win-bind="textContent: title; alt: title"></h2>
+            <span class="ss-standard"></span>
+            <div class="zoomedOutItemCount" data-win-bind="textContent: itemsCount;"></div>
+        </div>
+    </div>
+
+    <div class="fragment groupeditemspage">
+        <header aria-label="Header content" role="banner" data-win-design-locked="true">
+            <button class="win-backbutton" aria-label="Back" disabled type="button" data-win-design-locked="true"></button>
+            <h1 class="titlearea win-type-ellipsis" data-win-design-locked="true"><span class="pagetitle">Kips</span>
+            </h1>
+
+        </header>
+     <section aria-label="Main content" role="main">
+
+            <div id="zoom" data-win-control="WinJS.UI.SemanticZoom" data-win-options="{ initiallyZoomedOut: true }" style="height: 100%">
+                <div id="zoomedInListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi' }"></div>
+                <div id="zoomedOutListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi'}"></div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

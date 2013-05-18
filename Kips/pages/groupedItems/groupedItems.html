@@ -16,7 +16,7 @@
     <script src="/js/data.js"></script>
     <script src="/pages/groupedItems/groupedItems.js"></script>
 </head>
-<body >
+<body>
     <!-- These templates are used to display each item in the ListView declared below. -->
     <div class="headertemplate" data-win-control="WinJS.Binding.Template" data-win-design-locked="true">
         <button class="group-header win-type-x-large win-type-interactive" data-win-bind="groupKey: key"
@@ -47,40 +47,46 @@
 
     <div class="itemTextTemplate" data-win-control="WinJS.Binding.Template" data-win-design-locked="true">
         <div class="item">
-                <h4 class="item-title win-type-ellipsis"></h4>
-                <h6 class="item-subtitle win-type-ellipsis"></h6>
+            <h4 class="item-title win-type-ellipsis"></h4>
+            <h6 class="item-subtitle win-type-ellipsis"></h6>
         </div>
     </div>
 
     <div class="zoomedOutItemTemplate" data-win-control="WinJS.Binding.Template">
-        <div class="zoomedOutItemContainer" >
-            <h2 class="zoomedOutGroupTitle" data-win-bind="textContent: title; alt: title"> </h2>
+        <div class="zoomedOutItemContainer">
+            <h2 class="zoomedOutGroupTitle" data-win-bind="textContent: title; alt: title"></h2>
             <span class="ss-standard"></span>
             <div class="zoomedOutItemCount" data-win-bind="textContent: itemsCount;"></div>
         </div>
-</div>
+    </div>
 
     <!-- The content that will be loaded and displayed. -->
     <div class="fragment groupeditemspage">
-    	<header aria-label="Header content" role="banner" data-win-design-locked="true">
-    		<button class="win-backbutton" aria-label="Back" disabled type="button" data-win-design-locked="true"></button>
-    		<h1 class="titlearea win-type-ellipsis" data-win-design-locked="true"><span class="pagetitle">Kips</span>
-    		</h1>
-            
-    	</header>
-    	<div id="account" style="margin: 40px 76px 23px 1010px; -ms-grid-column-span: 1; -ms-grid-column: 1; -ms-grid-row-span: 1;">
-    		<img src="#" class="avatar small" id="openAccount" data-win-bind="src:avatar_url">
-    	</div>
-            
+        <header aria-label="Header content" role="banner" data-win-design-locked="true">
+            <button class="win-backbutton" aria-label="Back" disabled type="button" data-win-design-locked="true"></button>
+            <h1 class="titlearea win-type-ellipsis" data-win-design-locked="true"><span class="pagetitle">Kips</span>
+            </h1>
 
-        <section aria-label="Main content" role="main">                
-       
+        </header>
+        <div id="account" style="margin: 40px 76px 23px 1010px; -ms-grid-column-span: 1; -ms-grid-column: 1; -ms-grid-row-span: 1;">
+            <img src="#" class="avatar small" id="openAccount" data-win-bind="src:avatar_url">
+        </div>
+
+
+        <section aria-label="Main content" role="main">
+
             <div id="zoom" data-win-control="WinJS.UI.SemanticZoom" data-win-options="{ initiallyZoomedOut: false }" style="height: 100%">
-                <div id="zoomedInListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi' }"></div>            
+                <div id="zoomedInListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi' }"></div>
                 <div id="zoomedOutListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi'}"></div>
             </div>
-</section>
-
+        </section>
+            <div id="appbar" data-win-control="WinJS.UI.AppBar" data-win-options="{sticky: true}">
+        <button id="deleteClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'deleteCLip', section:'selection', label:'Delete Clip', icon:'delete'}"></button>
+        <button id="addClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addClip', section:'global', label:'Edit Clip', icon:'add'}"></button>
+        <button id="addNote" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addNote', section:'global', label:'Add Link', icon:'page'}"></button>
+        <button id="addList" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addList', section:'global', label:'Add Note', icon:'list'}"></button>
+        <button id="editClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'editClip', section:'selection', label:'Add List', icon:'edit'}"></button>
+    </div>
     </div>
 </body>
 </html>
