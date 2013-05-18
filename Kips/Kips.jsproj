@@ -90,6 +90,12 @@
     <Content Include="js\default.js" />
     <Content Include="js\navigator.js" />
     <Content Include="js\script.js" />
+    <Content Include="pages\contracts\receive\shareTarget.css" />
+    <Content Include="pages\contracts\receive\shareTarget.html" />
+    <Content Include="pages\contracts\receive\shareTarget.js" />
+    <Content Include="pages\contracts\search\searchResults.css" />
+    <Content Include="pages\contracts\search\searchResults.html" />
+    <Content Include="pages\contracts\search\searchResults.js" />
     <Content Include="pages\login\login.css" />
     <Content Include="pages\login\login.html" />
     <Content Include="pages\login\login.js" />
