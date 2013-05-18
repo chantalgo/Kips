@@ -9,7 +9,8 @@
     var mediumGray = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXY5g8dcZ/AAY/AsAlWFQ+AAAAAElFTkSuQmCC";
 
     var dataPromises = [];
-    var blogs =[];
+    var blogs = [];
+    var userFeed = [];
 
     var blogPosts = new WinJS.Binding.List();
 
@@ -78,8 +79,8 @@
 
     function getFeeds() {
         // Create an object for each feed.
-
-        for (var i = 0; i < Kippt.lists.meta.total_count; i++) {
+        var i;
+        for (i = 0; i < Kippt.lists.meta.total_count; i++) {
             var obj = Kippt.lists.objects[i];
             blogs[i] = {
                 key: obj.id,
@@ -279,7 +280,95 @@
         }
 
 
+    function getUserFeed(type, bindinglist) {
+        switch (type) {
+            case "feed":
+                acquireSyndicationFeed().done(function (r) {
+                    var response = JSON.parse(r.responseText);
+                    getItemsFromJSONFeed(response, bindinglist)
+                    return;
+                })
+                break;
+            case "favorites":
+                acquireSyndicationFavorites().done(function (r) {
+                    var response = JSON.parse(r.responseText);
+                    getItemsFromJSONFeed(response, bindinglist)
+                    return;
+                })
+                break;
+        }
+    }
+
+    function acquireSyndicationFeed() {
+        return WinJS.xhr({
+            headers: { "X-Kippt-Username": Kippt.username, "X-Kippt-API-Token": Kippt.token },
+            url: Kippt.urlRoot+"/api/clips/feed?limit200&include_data=list,via,media"
+        })
+    }
+
+    function acquireSyndicationFavorites() {
+        return WinJS.xhr({
+            headers: { "X-Kippt-Username": Kippt.username, "X-Kippt-API-Token": Kippt.token },
+            url: Kippt.urlRoot + "/api/clips/favorites?limit200&include_data=list,via,media"
+        })
+    }
+
+    function getItemsFromJSONFeed(response, userFeedPosts) {
+    
+        var feedItems = response.objects;
+        var max = feedItems.length;
+            // Process each blog post.
+            for (var postIndex = 0; postIndex < max; postIndex++) {
+                var post = feedItems[postIndex];
+                var postbg,postdescription;
+                try {
+                    if (post.media != null && post.media.images != null && post.media.images.tile != null && post.media.images.tile.url != null) {
+                        if (post.media.images.original != null && post.media.images.original.width != null && post.media.images.original.width >= 350) {
+                            postbg = post.media.images.tile.url;
+                        }
+                    }
+                    else {
+                        postbg = null;
+                    }
+                }
+                catch (e) {
+                    postbg = null;
+                }
+                try {
+                    if (post.media != null && post.media.description != null) {
+                        postdescription = post.media.description + "...";
+                    }
+                    else {
+                        postdescription = "";
+                    }
+                }
+                catch (er) {
+                }
+
+                if (post.url_domain == "github.com") {
+                    postbg= '/images/GitHub-Mark-120px-plus.png';
+                }
+
+                // Store the post info we care about in the array.
+                userFeedPosts.push({
+                    key: post.id,
+                    title: post.title,
+                    author: post.user.username,
+                    pubDate: post.created,
+                    backgroundImage: postbg,
+                    url: post.url,
+                    content: postdescription,
+                    favorite: post.is_favorite,
+                    notes: post.notes,
+                    domain: post.url_domain,
+                    comments_count: post.comments.count,
+                    comments_data: post.comments.data
+                });
+            }
+        }
+
         WinJS.Namespace.define("GetAllData", {
             addtoFeed: addtoFeed,
+            getUserFeed: getUserFeed
         })
 })();

@@ -72,6 +72,7 @@
             var zoomedOutListView = element.querySelector("#zoomedOutListView").winControl;
 
             zoomedOutListView.itemTemplate = element.querySelector(".zoomedOutItemTemplate");
+
             zoomedOutListView.itemDataSource = Data.groups.dataSource;
             zoomedOutListView.groupDataSource = null;
             zoomedOutListView.layout = new ui.GridLayout({ groupHeaderPosition: "top" });

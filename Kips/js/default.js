@@ -26,6 +26,13 @@
                 // TODO: This application has been newly launched. Initialize
                 // your application here.
 
+
+                document.getElementById("goHome").onclick = goHome;
+                document.getElementById("goFeed").onclick = goFeed;
+                document.getElementById("goFavorites").onclick = goFavorites;
+                document.getElementById("goAllLists").onclick = goAllLists;
+
+
                 document.getElementById("deleteList").onclick = deleteList;
                 document.getElementById("deleteClip").onclick = deleteClip;
                 document.getElementById("addClip").onclick = addClip;
@@ -74,7 +81,6 @@
         app.sessionState.history = nav.history;
     };
 
-    // The click event handler for button1
     function loginToken(mouseEvent) {
 
         Kippt.username = document.getElementById('username').value;
@@ -150,11 +156,28 @@
     }
 
     function addList() {
-        showFlyout(confirmFlyout, appbar, "left");
+        showFlyout(confirmFlyout, appbar, "right");
     };
 
     function showFlyout(flyout, anchor, placement) {
         flyout.winControl.show(anchor, placement);
     }
+
+    function goHome() {
+        nav.navigate("/pages/groupedItems/groupedItems.html");
+    }
+    
+    function goFeed() {
+        nav.navigate("/pages/feed/feed.html");
+    }
+
+    function goFavorites() {
+        nav.navigate("/pages/favorites/favorites.html");
+    }
+    
+    function goAllLists() {
+       // nav.navigate("/pages/allLists/allLists.html");
+    }
+    
     app.start();
 })();

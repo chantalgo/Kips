@@ -1,4 +1,21 @@
-﻿.extendedSplashScreen {
+﻿#topBar {
+height:150px;
+padding: 20px;
+}
+
+.topBarItem {
+    display:inline-block;
+height: 80%;
+background-color: #22262e;
+color:white;
+padding: 10px;
+margin: 10px;
+}
+.capitalize {
+text-transform:capitalize;
+}
+
+.extendedSplashScreen {
     height: 100%;
     width: 100%;
     position: absolute;

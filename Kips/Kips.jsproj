@@ -89,6 +89,12 @@
     <Content Include="pages\contracts\search\searchResults.css" />
     <Content Include="pages\contracts\search\searchResults.html" />
     <Content Include="pages\contracts\search\searchResults.js" />
+    <Content Include="pages\favorites\favorites.css" />
+    <Content Include="pages\favorites\favorites.html" />
+    <Content Include="pages\favorites\favorites.js" />
+    <Content Include="pages\feed\feed.css" />
+    <Content Include="pages\feed\feed.html" />
+    <Content Include="pages\feed\feed.js" />
     <Content Include="pages\login\login.css" />
     <Content Include="pages\login\login.html" />
     <Content Include="pages\login\login.js" />
