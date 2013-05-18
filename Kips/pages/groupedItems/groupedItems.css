@@ -3,7 +3,7 @@
 }
 #zoomedOutListView .win-item {
     height: 100px;
-    width: 250px;         
+    width: 300px;         
 }
 
 #zoomedOutListView .win-container {
@@ -13,19 +13,28 @@
 .zoomedOutItemContainer {
     min-height: 300px;
     height: 100%;
-    width: 250px;
+    width: 300px;
     display: -ms-grid;
    background-color: #333;
     -ms-grid-rows: 1fr 1fr;
     -ms-grid-columns: 1fr;
+     padding: 10px 15px 10px 15px;
+     color: whitesmoke;
+     box-sizing: border-box;
 }
 
 .zoomedOutGroupTitle {
     -ms-grid-row: 1;
+    -ms-grid-column: 1;
     font-size: 28px;
-    color: whitesmoke;
     font-weight: 200;
-    margin: 10px 15px 10px 15px;
+}
+
+.zoomedOutItemCount {
+    -ms-grid-column: 2;
+    text-align: right;
+    font-size: 14px;
+    margin-left: 15px;
 }
 
 .win-selectionstylefilled :not(.win-footprint).win-container {
@@ -105,60 +114,101 @@
                 content: "\E26C";
             }
 
-    .groupeditemspage .groupeditemslist .item {
-        -ms-grid-columns: 1fr;
-        -ms-grid-rows: 1fr 90px;
-        display: -ms-grid;
-        height: 200px;
-        width: 350px;
-        /*padding: 2px;
-        border-radius:2px; */
-	    background-color:#fff;
-        /*background-color: #069F74;*/
-    }
+        .groupeditemspage .groupeditemslist .win-item {
+            width: 350px;
+            -ms-grid-columns: 1fr;
+            -ms-grid-rows: 1fr 60px;
+            display: -ms-grid;
+        }
 
-        .groupeditemspage .groupeditemslist .text .item {
+        .groupeditemspage .groupeditemslist .text {
             height: 95px;
-            -ms-grid-columns: 1fr;
-            -ms-grid-rows: 1fr 90px;
-            display: -ms-grid;
-            width: 350px;
+            padding: 10px 5px;
+            box-sizing: border-box;
         }
 
-        .groupeditemspage .groupeditemslist .media .item {
+            .groupeditemspage .groupeditemslist .text[data-domain] {
+                padding-left: 50px;
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                background-position-y: center;
+                background-position-x: center;
+                background-origin: border-box;
+            }
+
+            .groupeditemspage .groupeditemslist .text[data-domain *= 'dribbble.com'] {
+                 background-image: url(../../images/domain-bgs/dribbble.png);
+                 color: #ffffff;
+            }
+
+            .groupeditemspage .groupeditemslist .text[data-domain *= 'github.com'] {
+                background-image: url(../../images/domain-bgs/github.png);
+            }
+
+            .groupeditemspage .groupeditemslist .text[data-domain *= 'github.io'] {
+                background-image: url(../../images/domain-bgs/github.png);
+            }
+
+            .groupeditemspage .groupeditemslist .text[data-domain *= 'nytimes.com'] {
+                background-image: url(../../images/domain-bgs/nytimes.png);
+                color: #ffffff;
+            }
+
+            .groupeditemspage .groupeditemslist .text[data-domain *= 'channel9.msdn.com'] {
+                background-image: url(../../images/domain-bgs/channel9.png);
+                color: #ffffff;
+            }
+
+            .groupeditemspage .groupeditemslist .text[data-domain *= 'microsoft.com'] {
+                background-image: url(../../images/domain-bgs/microsoft.png);
+            }
+
+            .groupeditemspage .groupeditemslist .text .item {
+                -ms-grid-columns: 1fr;
+                -ms-grid-row: 1;
+                -ms-grid-rows: 1fr 50%;
+                -ms-grid-columns: 1;
+                display: -ms-grid;
+                height: 85px;
+                overflow: hidden;
+            }
+
+               .groupeditemspage .groupeditemslist .text .item .item-title {
+                    -ms-grid-row: 1;
+                    -ms-grid-row-align: end;
+                    font-weight: bold;
+                }
+
+                .groupeditemspage .groupeditemslist .text .item .item-subtitle {
+                    -ms-grid-row: 2;
+                    -ms-grid-row-align: start;
+                }
+
+        .groupeditemspage .groupeditemslist .media {
             height: 200px;
-            -ms-grid-columns: 1fr;
-            -ms-grid-rows: 1fr 90px;
-            display: -ms-grid;
-            width: 350px;
+            position: relative;
         }
 
-        .groupeditemspage .groupeditemslist .item .item-image {
-            -ms-grid-row-span: 2;
-  
-        
-        }
-
-        .groupeditemspage .groupeditemslist .item .item-overlay {
-            -ms-grid-row: 2;
-            -ms-grid-rows: 1fr 21px;
-            display: -ms-grid;
-            padding: 6px 15px 2px 15px;
+        .groupeditemspage .groupeditemslist .media .item-overlay {
+            position: absolute;
+            bottom: 0;
+            padding: 6px 15px 6px 15px;
+            box-sizing: border-box;
             visibility: hidden;
+            opacity: 0.9;
         }
 
-        .groupeditemspage .groupeditemslist .win-selected .item .item-overlay {
+        .groupeditemspage .groupeditemslist .win-selected .media .item-overlay {
             visibility:visible;
         }
 
-            .groupeditemspage .groupeditemslist .item .item-title {
-                -ms-grid-row: 1;
+            .groupeditemspage .groupeditemslist .media .item-title {
                 overflow: hidden;
                 width: 320px;
+                font-weight: bold;
             }
 
-            .groupeditemspage .groupeditemslist .item .item-subtitle {
-                -ms-grid-row: 2;
+            .groupeditemspage .groupeditemslist .media .item-subtitle {
                  width: 320px;
             }
 
