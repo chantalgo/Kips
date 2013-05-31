@@ -166,7 +166,8 @@
         // Process each blog post.
         for (var postIndex = 0; postIndex < max; postIndex++) {
             var post = posts[postIndex];
-            var postbg, postdescription;
+            var postbg = null;
+            var postdescription;
             var clear = "";
             try {
                 if (post.media != null && post.media.images != null && post.media.images.tile != null && post.media.images.tile.url != null) {
@@ -300,7 +301,6 @@
             }
             Data.currentList = currentList;
         }
-
 
     function getUserFeed(type, bindinglist) {
         switch (type) {
