@@ -253,8 +253,9 @@
             // Process each blog post.
             for (var postIndex = 0; postIndex < max; postIndex++) {
                 var post = posts[postIndex];
-                var postbg,postdescription;
-                    try {
+                var postbg = null;
+                var postdescription;
+                try {
                         if (post.media != null && post.media.images != null && post.media.images.tile != null && post.media.images.tile.url != null) {
                             if (post.media.images.original != null && post.media.images.original.width != null && post.media.images.original.width >= 350) {
                                 postbg = post.media.images.tile.url;
@@ -342,7 +343,8 @@
             // Process each blog post.
             for (var postIndex = 0; postIndex < max; postIndex++) {
                 var post = feedItems[postIndex];
-                var postbg,postdescription;
+                var postbg = null;
+                var postdescription;
                 try {
                     if (post.media != null && post.media.images != null && post.media.images.tile != null && post.media.images.tile.url != null) {
                         if (post.media.images.original != null && post.media.images.original.width != null && post.media.images.original.width >= 350) {
