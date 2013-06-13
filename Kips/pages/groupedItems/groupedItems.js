@@ -102,6 +102,7 @@
             };
             // Make sure the following is called after the DOM has initialized. Typically this would be part of app initialization
             WinJS.Application.start();
+
             if (appView.value === appViewState.snapped) {
                 // If the app is snapped, configure the zoomed-in ListView
                 // to show groups and lock the SemanticZoom control
@@ -163,7 +164,6 @@
                 var item = Data.items.getAt(args.detail.itemIndex);
                 nav.navigate("/pages/itemDetail/itemDetail.html", { item: item });
             }
-
         }
     });
 
