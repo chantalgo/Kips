@@ -8,6 +8,7 @@
 
             var item = options.item;
 
+
             WinJS.Namespace.define("Share", {
                 item: item
             });
@@ -21,7 +22,7 @@
                 element.querySelector(".titlearea .pageinfo").removeNode();
             }
 
-            if (item.group) {
+            if (item.group.title) {
                 element.querySelector(".titlearea .pagetitle").textContent = item.group.title;
             }
             else if (options.via) {
@@ -33,6 +34,11 @@
                         element.querySelector(".titlearea .pagetitle").textContent = "Favorites";
                         break;
                 }
+            }
+            else if (!(options.via) && (!(item.group.title))) {
+                var group = Data.resolveGroupReference(item.group);
+                element.querySelector(".titlearea .pagetitle").textContent =group.title;
+
             }
 
             element.querySelector("article .item-title").textContent = item.title;

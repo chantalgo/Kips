@@ -176,6 +176,7 @@
 
             }
 
+
         });
 
     WinJS.Namespace.define("kipptClipsDataSource", {

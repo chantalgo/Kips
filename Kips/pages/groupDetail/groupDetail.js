@@ -71,13 +71,14 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
-
-             listView = document.getElementById("listview1").winControl;
+            var groupKey = options.groupKey;
+            var group = (options && options.groupKey) ? Data.resolveGroupReference(groupKey) : Data.groups.getAt(0);
+            listView = document.getElementById("listview1").winControl;
             listView.forceLayout();
-             myDataSrc = new kipptClipsDataSource.datasource(options.groupKey);
-            
+            myDataSrc = new kipptClipsDataSource.datasource(groupKey);
+            WinJS.Binding.processAll(document.getElementById("listInfo"), group);
+            console.log();
             /*
-            var group = (options && options.groupKey) ? Data.resolveGroupReference(options.groupKey) : Data.groups.getAt(0);
             GetAllData.addtoFeed(group.key, currentList);
 
             Data.currentList = currentList;
@@ -89,7 +90,7 @@
                 function groupDataSelector(item) { return group; }
             );
 
-            element.querySelector("header[role=banner] .pagetitle").textContent = group.title;
+            
 
             listView.itemDataSource = pageList.dataSource;
             listView.itemTemplate = itemTemplateRenderer;
@@ -97,21 +98,20 @@
             listView.groupHeaderTemplate = element.querySelector(".headertemplate");
             listView.oniteminvoked = this._itemInvoked.bind(this);
 */
-
+            element.querySelector("header[role=banner] .pagetitle").textContent = group.title;
+            WinJS.Binding.processAll(document.getElementById("listInfo"), group);
             listView.itemDataSource = myDataSrc;
             listView.itemTemplate = itemTemplateRenderer;
-
-            // listView.groupDataSource = pageList.groups.dataSource;
-            listView.groupHeaderTemplate = element.querySelector(".headertemplate");
             listView.oniteminvoked = this._itemInvoked;
 
 
 
-            //this._initializeLayout(listView, Windows.UI.ViewManagement.ApplicationView.value);
+            this._initializeLayout(listView, Windows.UI.ViewManagement.ApplicationView.value);
             listView.element.focus();
 
             this.populateMenu();
-
+            
+            listView.addEventListener("iteminvoked", itemInvokedHandler, false);
             //Pop-Menu
             document.querySelector(".titlearea").addEventListener("click", showHeaderMenu, false);
             document.getElementById("goHome").addEventListener("click", goHome, false);
@@ -119,14 +119,14 @@
     
             ,
 
-   //    unload: function () {
-   //         //this._items.dispose();
-   //         this._items.splice(0, this._items.length);
+        unload: function () {
+            //this._items.dispose();
+            //this._items.splice(0, this._items.length);
 
-   //     },
+        },
 
-   //     // Populate the menu under the title
-       populateMenu: function (){
+        //     // Populate the menu under the title
+        populateMenu: function (){
             var menu = document.getElementById('headerMenu').winControl;
             for (var i = 0; i < Kippt.lists.meta.total_count; i++) {
                 var list = Kippt.lists.objects[i];
@@ -139,43 +139,45 @@
             }
         },
 
-   //     // This function updates the page layout in response to viewState changes.
-   //    updateLayout: function (element, viewState, lastViewState) {
-   //         /// <param name="element" domElement="true" />
+        //     // This function updates the page layout in response to viewState changes.
+        updateLayout: function (element, viewState, lastViewState) {
+            //         /// <param name="element" domElement="true" />
 
-   //         var listView = element.querySelector(".itemslist").winControl;
-   //         if (lastViewState !== viewState) {
-   //             if (lastViewState === appViewState.snapped || viewState === appViewState.snapped) {
-   //                 var handler = function (e) {
-   //                      listView.removeEventListener("contentanimating", handler, false);
-   //                     e.preventDefault();
-   //                 }
-   //                 listView.addEventListener("contentanimating", handler, false);
-   //                 var firstVisible = listView.indexOfFirstVisible;
-   //                 this._initializeLayout(listView, viewState);
-   //                 if (firstVisible >= 0 && listView.itemDataSource.list.length > 0) {
-   //                     listView.indexOfFirstVisible = firstVisible;
-   //                 }
-   //             }
-   //         }
-   //     },
+            var listView = element.querySelector(".itemslist").winControl;
+            if (lastViewState !== viewState) {
+                if (lastViewState === appViewState.snapped || viewState === appViewState.snapped) {
+                    var handler = function (e) {
+                        listView.removeEventListener("contentanimating", handler, false);
+                        e.preventDefault();
+                    }
+                    listView.addEventListener("contentanimating", handler, false);
+                    var firstVisible = listView.indexOfFirstVisible;
+                    this._initializeLayout(listView, viewState);
+                    if (firstVisible >= 0 && listView.itemDataSource.getCount > 0) {
+                        listView.indexOfFirstVisible = firstVisible;
+                    }
+                }
+            }
+        },
 
-   //     // This function updates the ListView with new layouts
-   //     _initializeLayout: function (listView, viewState) {
-   //         /// <param name="listView" value="WinJS.UI.ListView.prototype" />
+        //     // This function updates the ListView with new layouts
+        _initializeLayout: function (listView, viewState) {
+            //         /// <param name="listView" value="WinJS.UI.ListView.prototype" />
 
-   //         if (viewState === appViewState.snapped) {
-   //             listView.layout = new ui.ListLayout();
-   //         } else {
-   //             listView.layout = new ui.GridLayout({ groupHeaderPosition: "left", groupInfo: groupInfo });
-   //         }
-   //     },
-
-        _itemInvoked: function (args) {
-            var item = myDataSrc.getItem(args.detail.itemIndex);
-            nav.navigate("/pages/itemDetail/itemDetail.html", { item: item });
+            if (viewState === appViewState.snapped) {
+                listView.layout = new ui.ListLayout();
+            } else {
+                listView.layout = new ui.GridLayout({ groupHeaderPosition: "left", groupInfo: groupInfo });
+            }
         }
-    });
+        //,
+
+        //_itemInvoked: function (args) {
+        //    var item = myDataSrc.getItem(args.detail.itemIndex);
+        //    
+        //}
+        //} )
+    }) ;
 
    // // Place the menu under the title and aligned to the left of it
    function showHeaderMenu() {
@@ -190,6 +192,12 @@
 
     function goHome() {
         nav.navigate("/pages/groupedItems/groupedItems.html");
+    }
+    function itemInvokedHandler(eventObject) {
+        eventObject.detail.itemPromise.done(function (invokedItem) {
+            nav.navigate("/pages/itemDetail/itemDetail.html", { item: invokedItem.data });
+
+        });
     }
 
 })();

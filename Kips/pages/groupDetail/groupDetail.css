@@ -1,4 +1,24 @@
-﻿.groupdetailpage section[role=main] {
+﻿#listInfo {
+    -ms-grid-columns: 20fr;
+    -ms-grid-columns: 10fr 20fr 15fr;
+}
+.group-subtitle {
+-ms-grid-column: 1;
+-ms-grid-row:1;
+background-color:
+}
+.group-image {
+    -ms-grid-column: 1;
+    -ms-grid-row:1;
+background-color:
+}
+.group-description {
+-ms-grid-column: 1;
+-ms-grid-row:1;
+background-color:
+}
+
+.groupdetailpage section[role=main] {
     -ms-grid-row: 1;
     -ms-grid-row-span: 2;
 }
