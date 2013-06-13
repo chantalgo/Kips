@@ -132,7 +132,7 @@
                                 catch (er) {
                                 }
                                 results.push({
-                                    key: (fetchIndex + i).toString(),
+                                    key: (post.id).toString(),
                                     data: {
                                         group: that._listId,
                                         key: post.id,
@@ -175,6 +175,7 @@
                     });
 
             }
+
         });
 
     WinJS.Namespace.define("kipptClipsDataSource", {

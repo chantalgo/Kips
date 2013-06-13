@@ -7,6 +7,8 @@
     var key;
     var mediumGray = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXY5g8dcZ/AAY/AsAlWFQ+AAAAAElFTkSuQmCC";
     var currentList = new WinJS.Binding.List();
+    var myDataSrc;
+    var listView;
 
     function itemTemplateRenderer(itemPromise) {
         return itemPromise.then(function (currentItem) {
@@ -70,9 +72,9 @@
         // populates the page elements with the app's data.
         ready: function (element, options) {
 
-            var listView = document.getElementById("listview1").winControl;
-
-            var myDataSrc = new kipptClipsDataSource.datasource(options.groupKey);
+             listView = document.getElementById("listview1").winControl;
+            listView.forceLayout();
+             myDataSrc = new kipptClipsDataSource.datasource(options.groupKey);
             
             /*
             var group = (options && options.groupKey) ? Data.resolveGroupReference(options.groupKey) : Data.groups.getAt(0);
@@ -98,22 +100,24 @@
 
             listView.itemDataSource = myDataSrc;
             listView.itemTemplate = itemTemplateRenderer;
+
             // listView.groupDataSource = pageList.groups.dataSource;
-            //listView.groupHeaderTemplate = element.querySelector(".headertemplate");
-            // listView.oniteminvoked = this._itemInvoked.bind(this);
+            listView.groupHeaderTemplate = element.querySelector(".headertemplate");
+            listView.oniteminvoked = this._itemInvoked;
+
 
 
             //this._initializeLayout(listView, Windows.UI.ViewManagement.ApplicationView.value);
-            //listView.element.focus();
+            listView.element.focus();
 
-            //this.populateMenu();
+            this.populateMenu();
 
             //Pop-Menu
-            //document.querySelector(".titlearea").addEventListener("click", showHeaderMenu, false);
-            //document.getElementById("goHome").addEventListener("click", goHome, false);
+            document.querySelector(".titlearea").addEventListener("click", showHeaderMenu, false);
+            document.getElementById("goHome").addEventListener("click", goHome, false);
         }
-    });
-          //  ,
+    
+            ,
 
    //    unload: function () {
    //         //this._items.dispose();
@@ -122,18 +126,18 @@
    //     },
 
    //     // Populate the menu under the title
-   //    populateMenu: function (){
-   //         var menu = document.getElementById('headerMenu').winControl;
-   //         for (var i = 0; i < Kippt.lists.meta.total_count; i++) {
-   //             var list = Kippt.lists.objects[i];
-   //             var mc = new WinJS.UI.MenuCommand(null, {
-   //                 id: list.id, label: list.title, extraClass: 'caller', onclick: function () {
-   //                     nav.navigate("/pages/groupDetail/groupDetail.html", { groupKey:this.id });
-   //                 }
-   //             });
-   //             menu._addCommand(mc);
-   //         }
-   //     },
+       populateMenu: function (){
+            var menu = document.getElementById('headerMenu').winControl;
+            for (var i = 0; i < Kippt.lists.meta.total_count; i++) {
+                var list = Kippt.lists.objects[i];
+                var mc = new WinJS.UI.MenuCommand(null, {
+                    id: list.id, label: list.title, extraClass: 'caller', onclick: function () {
+                        nav.navigate("/pages/groupDetail/groupDetail.html", { groupKey:this.id });
+                    }
+                });
+                menu._addCommand(mc);
+            }
+        },
 
    //     // This function updates the page layout in response to viewState changes.
    //    updateLayout: function (element, viewState, lastViewState) {
@@ -167,25 +171,25 @@
    //         }
    //     },
 
-   //     _itemInvoked: function (args) {
-   //         var item = this._items.getAt(args.detail.itemIndex);
-   //         nav.navigate("/pages/itemDetail/itemDetail.html", { item: item });
-   //     }
-   // });
+        _itemInvoked: function (args) {
+            var item = myDataSrc.getItem(args.detail.itemIndex);
+            nav.navigate("/pages/itemDetail/itemDetail.html", { item: item });
+        }
+    });
 
    // // Place the menu under the title and aligned to the left of it
-   //function showHeaderMenu() {
-   //     var title = document.querySelector("header .titlearea");
-   //     var menu = document.getElementById("headerMenu").winControl;
-   //     menu.anchor = title;
-   //     menu.placement = "bottom";
-   //     menu.alignment = "left";
+   function showHeaderMenu() {
+        var title = document.querySelector("header .titlearea");
+        var menu = document.getElementById("headerMenu").winControl;
+        menu.anchor = title;
+        menu.placement = "bottom";
+        menu.alignment = "left";
 
-   //     menu.show();
-   // }
+        menu.show();
+    }
 
-   // function goHome() {
-   //     nav.navigate("/pages/groupedItems/groupedItems.html");
-   // }
+    function goHome() {
+        nav.navigate("/pages/groupedItems/groupedItems.html");
+    }
 
 })();
