@@ -17,11 +17,7 @@
 </head>
 <body>
     <!-- These templates are used to display each item in the ListView declared below. -->
-    <div class="headertemplate" data-win-control="WinJS.Binding.Template">
-        <h2 class="group-subtitle" data-win-bind="textContent: subtitle"></h2>
-        <img class="group-image" src="#" data-win-bind="src: backgroundImage; alt: title" />
-        <h4 class="group-description" data-win-bind="innerHTML: description"></h4>
-    </div>
+
     <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
         <div class="item">
             <img class="item-image" src="#" data-win-bind="src: backgroundImage; alt: title" />
@@ -59,13 +55,20 @@
                 <span class="chevron win-type-x-large">&#xe099;</span>
             </h1>
         </header>
+            <div class="headertemplate" id="listInfo">
+        <h2 class="group-subtitle" data-win-bind="textContent: title"></h2>
+        <img class="group-image" src="#" data-win-bind="src: backgroundImage; alt: title" />
+        <h4 class="group-description" data-win-bind="innerHTML: description"></h4>
+        <p data-win-bind="textContent: created"></p>
+    </div>
         <section aria-label="Main content" role="main">
             <div id="listview1" class="itemslist" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ 
                 loadingBehavior: 'incremental', 
                 pagesToLoad: 2, 
                 automaticallyLoadPages: true,
                 pagesToLoadThreshold: 1, 
-                selectionMode: 'multi' }"></div>
+                selectionMode: 'multi' }">
+            </div>
         </section>
     </div>
 
