@@ -279,10 +279,6 @@
                     catch (er) {
                     }
 
-                if (post.url_domain == "github.com") {
-                    postbg= '/images/GitHub-Mark-120px-plus.png';
-                }
-
                 // Store the post info we care about in the array.
                 currentList.push({
                     group: feed,
@@ -367,10 +363,6 @@
                     }
                 }
                 catch (er) {
-                }
-
-                if (post.url_domain == "github.com") {
-                    postbg= '/images/GitHub-Mark-120px-plus.png';
                 }
 
                 // Store the post info we care about in the array.
