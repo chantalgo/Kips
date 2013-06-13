@@ -27,10 +27,18 @@
     </div>
     <div class="itemtemplate" data-win-control="WinJS.Binding.Template" data-win-design-locked="true">
         <div class="item">
-            <img class="item-image" src="#" data-win-bind="src: backgroundImage; alt: title" />
             <div class="item-overlay">
-                <h4 class="item-title" data-win-bind="textContent: title"></h4>
+                <h1 class="item-title" data-win-bind="textContent: title"></h1>
                 <h6 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: content"></h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="snappedtemplate" data-win-control="WinJS.Binding.Template" data-win-design-locked="true">
+        <div class="snapped">
+            <div class="snapped-overlay">
+                <h1 class="snapped-title" data-win-bind="textContent: title"></h1>
+                <h6 class="snapped-subtitle win-type-ellipsis" data-win-bind="textContent: content"></h6>
             </div>
         </div>
     </div>
@@ -80,13 +88,13 @@
                 <div id="zoomedOutListView" class="groupeditemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'multi'}"></div>
             </div>
         </section>
-            <div id="appbar" data-win-control="WinJS.UI.AppBar" data-win-options="{sticky: true}">
-        <button id="deleteClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'deleteCLip', section:'selection', label:'Delete Clip', icon:'delete'}"></button>
-        <button id="addClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addClip', section:'global', label:'Edit Clip', icon:'add'}"></button>
-        <button id="addNote" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addNote', section:'global', label:'Add Link', icon:'page'}"></button>
-        <button id="addList" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addList', section:'global', label:'Add Note', icon:'list'}"></button>
-        <button id="editClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'editClip', section:'selection', label:'Add List', icon:'edit'}"></button>
-    </div>
+        <div id="appbar" data-win-control="WinJS.UI.AppBar" data-win-options="{sticky: true}">
+            <button id="deleteClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'deleteCLip', section:'selection', label:'Delete Clip', icon:'delete'}"></button>
+            <button id="addClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addClip', section:'global', label:'Edit Clip', icon:'add'}"></button>
+            <button id="addNote" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addNote', section:'global', label:'Add Link', icon:'page'}"></button>
+            <button id="addList" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addList', section:'global', label:'Add Note', icon:'list'}"></button>
+            <button id="editClip" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'editClip', section:'selection', label:'Add List', icon:'edit'}"></button>
+        </div>
     </div>
 </body>
 </html>

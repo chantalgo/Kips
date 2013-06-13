@@ -96,6 +96,12 @@
             WinJS.Binding.processAll(account, Kippt.account);
             document.getElementById("openAccount").addEventListener("click", accountInfo, false);
 
+            WinJS.Application.onsettings = function (e) {
+                e.detail.applicationcommands = { "defaults": { title: "Account Information", href: "/pages/settingsCharm/accountInfo/accountInfo.html" } };
+                WinJS.UI.SettingsFlyout.populateSettings(e);
+            };
+            // Make sure the following is called after the DOM has initialized. Typically this would be part of app initialization
+            WinJS.Application.start();
             if (appView.value === appViewState.snapped) {
                 // If the app is snapped, configure the zoomed-in ListView
                 // to show groups and lock the SemanticZoom control
@@ -103,7 +109,7 @@
                 zoomedInListView.groupDataSource = null;
                 zoomedInListView.layout = new ui.ListLayout();
                 semanticZoom.locked = true;
-                zoomedInListView.itemTemplate = element.querySelector(".itemtemplate");
+                zoomedInListView.itemTemplate = element.querySelector(".snappedtemplate");
             }
 
             else {
@@ -157,16 +163,12 @@
                 var item = Data.items.getAt(args.detail.itemIndex);
                 nav.navigate("/pages/itemDetail/itemDetail.html", { item: item });
             }
+
         }
     });
 
     function accountInfo() {
-        WinJS.Application.onsettings = function (e) {
-            e.detail.applicationcommands = { "defaults": { title: "Account Information", href: "/pages/settingsCharm/accountInfo/accountInfo.html" } };
-            WinJS.UI.SettingsFlyout.populateSettings(e);
-        };
-        // Make sure the following is called after the DOM has initialized. Typically this would be part of app initialization
-        WinJS.Application.start();
+
 
         WinJS.UI.SettingsFlyout.showSettings("defaults", "/pages/settingsCharm/accountInfo/accountInfo.html");
     }

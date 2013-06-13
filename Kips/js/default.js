@@ -10,6 +10,12 @@
     var activation = Windows.ApplicationModel.Activation;
     var nav = WinJS.Navigation;
 
+    var splash = null; // Variable to hold the splash screen object.
+    var dismissed = false; // Variable to track splash screen dismissal status.
+    var coordinates = { x: 0, y: 0, width: 0, height: 0 }; // Object to store splash screen image coordinates. It will be initialized during activation.
+    var url;
+    var vault = new Windows.Security.Credentials.PasswordVault();
+
     WinJS.Namespace.define("Kippt", {
         urlRoot: "https://kippt.com",
         username: "",
@@ -48,15 +54,29 @@
         }
     }
 
-    WinJS.Namespace.define("Appbar", {
-        deleteClip: deleteClip
-    })
-    app.addEventListener("activated", function (args) {
-        if (args.detail.kind === activation.ActivationKind.launch) {
-            if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
-                // TODO: This application has been newly launched. Initialize
-                // your application here.
+    function activated(eventObject) {
+        if (eventObject.detail.kind === Windows.ApplicationModel.Activation.ActivationKind.launch) {
+            // Retrieve splash screen object
+            splash = eventObject.detail.splashScreen;
 
+            // Retrieve the window coordinates of the splash screen image.
+            coordinates = splash.imageLocation;
+
+            // Register an event handler to be executed when the splash screen has been dismissed.
+            splash.addEventListener("dismissed", onSplashScreenDismissed, false);
+
+            // Create and display the extended splash screen using the splash screen object.
+            ExtendedSplash.show(splash);
+
+            // Listen for window resize events to reposition the extended splash screen image accordingly.
+            // This is important to ensure that the extended splash screen is formatted properly in response to snapping, unsnapping, rotation, etc...
+            window.addEventListener("resize", onResize, false);
+
+            // Use setPromise to indicate to the system that the splash screen must not be torn down
+            // until after processAll and navigate complete asynchronously.
+            eventObject.setPromise(WinJS.UI.processAll().then(function () {
+                // Navigate to either the first scenario or to the last running scenario
+                // before suspension or termination.
 
                 document.getElementById("goHome").onclick = goHome;
                 document.getElementById("goFeed").onclick = goFeed;
@@ -70,38 +90,40 @@
                 document.getElementById("addList").onclick = addList;
                 document.getElementById("editClip").onclick = editClip;
 
-            } else {
-                // TODO: This application has been reactivated from suspension.
-                // Restore application state here.
-            }
-
-            if (app.sessionState.history) {
-                nav.history = app.sessionState.history;
-            }
-            args.setPromise(WinJS.UI.processAll().then(function () {
-                if (nav.location) {
-                    nav.history.current.initialPlaceholder = true;
-                    return nav.navigate(nav.location, nav.state);
-                } else {
-                    return nav.navigate(Application.navigator.home);
-                }
-            }).done(function () {
-                var vault = new Windows.Security.Credentials.PasswordVault();
-
-                try {
-                    var creds = vault.findAllByResource("Kips");
-                    autoLogin(vault, creds);
-                }
-                catch (e) {
-                    var login = document.getElementById("login");
-                    login.addEventListener("click", loginToken, false);
-
-                }
-               
 
             }));
         }
-    });
+    }
+
+    function onSplashScreenDismissed() {
+        // Include code to be executed when the system has transitioned from the splash screen to the extended splash screen (application's first view).
+        try {
+            var creds = vault.findAllByResource("Kips");
+            autoLogin(vault, creds);
+        }
+
+        catch (e) {
+            var extendedSplashScreen = document.getElementById("extendedSplashScreen");
+            WinJS.Utilities.addClass(extendedSplashScreen, "hidden");
+            WinJS.Navigation.navigate("/pages/login/login.html");
+        }
+
+        console.log();
+
+    }
+
+    function onResize() {
+        // Safely update the extended splash screen image coordinates. This function will be fired in response to snapping, unsnapping, rotation, etc...
+        if (splash) {
+            // Update the coordinates of the splash screen image.
+            coordinates = splash.imageLocation;
+            ExtendedSplash.updateImageLocation(splash);
+        }
+    }
+
+    WinJS.Namespace.define("Appbar", {
+        deleteClip: deleteClip
+    })
 
     app.oncheckpoint = function (args) {
         // TODO: This application is about to be suspended. Save any state
@@ -111,47 +133,9 @@
         app.sessionState.history = nav.history;
     };
 
-    function loginToken(mouseEvent) {
-
-        Kippt.username = document.getElementById('username').value;
-        var kipptPassword = document.getElementById('password').value;
-
-        try {
-            if (document.getElementById('username').value === "" || document.getElementById('password').value === "") {
-                console.log("BLANK!");
-                throw new Error("Please enter a username and password.");
-            }
-
-            var promiseArray=[];
-
-            promiseArray[0]=WinJS.xhr({
-                user: Kippt.username,
-                password: kipptPassword,
-                url: Kippt.urlRoot + "/api/account/?include_data=api_token"
-            }).then(function (r) {
-                Kippt.account = JSON.parse(r.responseText);
-                Kippt.token = Kippt.account.api_token;});
-
-            promiseArray[1]= WinJS.xhr({
-                user: Kippt.username,
-                password: kipptPassword,
-                url: Kippt.urlRoot + "/api/lists/?limit=200"
-            }).then(function (r) {
-                Kippt.lists = JSON.parse(r.responseText);
-            });
-
-            WinJS.Promise.join(promiseArray).done( function (){
-                    var vault = new Windows.Security.Credentials.PasswordVault();
-                    var cred = new Windows.Security.Credentials.PasswordCredential("Kips", Kippt.username, Kippt.token);
-                    vault.add(cred);
-                    WinJS.Navigation.navigate("/pages/groupedItems/groupedItems.html");
-                })
-        }
-        catch (e) { };
-    };
 
     function autoLogin(vault, creds) {
-
+        console.log("autoLogin");
         creds = vault.findAllByResource("Kips");
         Kippt.username = creds.getAt(0).userName;
         Kippt.token = vault.retrieve("Kips", Kippt.username).password;
@@ -161,25 +145,34 @@
         promiseArray[0] = WinJS.xhr({
             headers: { "X-Kippt-Username": Kippt.username, "X-Kippt-API-Token": Kippt.token },
             url: Kippt.urlRoot + "/api/account/?include_data=api_token"
-        }).done(
+        }).then(
        function completed(r) {
            Kippt.account = JSON.parse(r.responseText);
        },
        function error(r) {
        },
        function progress(r) {
-           console.log("process");
+           document.getElementById("extendedSplashText").innerText="Getting account Information";
        });
         
 
          promiseArray[1] = WinJS.xhr({
              headers: { "X-Kippt-Username": Kippt.username, "X-Kippt-API-Token": Kippt.token },
              url: Kippt.urlRoot + "/api/lists/?limit=200"
-         }).then(function (r) {
+         }).then(
+         function completed(r) {
              Kippt.lists = JSON.parse(r.responseText);
-         });
+         },
+         function error(r){
+         },
+         function progress(r){
+             document.getElementById("extendedSplashText").innerText="Getting list Information";
+         }
+         );
 
-         WinJS.Promise.join(promiseArray).done( function () {
+         WinJS.Promise.join(promiseArray).done(function () {
+             var extendedSplashScreen = document.getElementById("extendedSplashScreen");
+             WinJS.Utilities.addClass(extendedSplashScreen, "hidden");
              WinJS.Navigation.navigate("/pages/groupedItems/groupedItems.html");
          });
 
@@ -209,6 +202,6 @@
         nav.navigate("/pages/allLists/allLists.html");
     }
 */
-
+    app.addEventListener("activated", activated, false);
     app.start();
 })();

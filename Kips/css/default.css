@@ -1,4 +1,46 @@
-﻿@font-face {
+﻿
+.extendedSplashScreen {
+    background-color:#cc3333;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display:normal;
+    visibility:visible;
+}
+
+#extendedSplashImage {
+    position: absolute;
+}
+
+#extendedSplashDescription
+{
+    position: absolute;
+    width: 100%;
+    top: calc(100% - 140px);
+    text-align: center;
+}
+
+#extendedSplashText
+{
+    font-family: 'Segoe UI Semilight';
+    font-size: 11pt;
+    text-align: center;
+    width: 75%;
+    color: #ffffff;
+}
+
+
+@font-face {
     font-family: 'idealist';
     src: url('../assets/idealist_sans-webfont.eot');
     src: url('../assets/idealist_sans-webfont.eot?#iefix') format('embedded-opentype'),

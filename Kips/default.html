@@ -13,8 +13,18 @@
     <link href="/css/default.css" rel="stylesheet" />
     <script src="/js/navigator.js"></script>
     <script src="/js/default.js"></script>
+    <script src="/js/extendedSplash.js"></script>
 </head>
 <body>
+    <div id="extendedSplashScreen" class="extendedSplashScreen hidden">
+        <img id="extendedSplashImage" src="/images/splashScreen.png" alt="Splash screen image" />
+
+        <progress id="extendedSplashProgress" style="color: white;" class="win-medium win-ring"></progress>
+
+        <div id="extendedSplashDescription">
+            <span id="extendedSplashText">Checking Login..</span>
+        </div>
+    </div>
 
     <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/pages/login/login.html'}"></div>
     <div id="appbar" data-win-control="WinJS.UI.AppBar" data-win-options="{sticky: true}">
