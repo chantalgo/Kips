@@ -93,6 +93,7 @@
     <Content Include="js\kipptClipsDataSource.js" />
     <Content Include="js\navigator.js" />
     <Content Include="js\script.js" />
+    <Content Include="js\script1.js" />
     <Content Include="js\showdown.js" />
     <Content Include="js\timespan.js" />
     <Content Include="pages\contracts\receive\shareTarget.css" />
