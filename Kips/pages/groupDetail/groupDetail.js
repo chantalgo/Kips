@@ -75,36 +75,15 @@
             var group = (options && options.groupKey) ? Data.resolveGroupReference(groupKey) : Data.groups.getAt(0);
             listView = document.getElementById("listview1").winControl;
             listView.forceLayout();
+
             myDataSrc = new kipptClipsDataSource.datasource(groupKey);
             WinJS.Binding.processAll(document.getElementById("listInfo"), group);
-            console.log();
-            /*
-            GetAllData.addtoFeed(group.key, currentList);
 
-            Data.currentList = currentList;
-
-            this._items = currentList;
-    
-            var pageList = this._items.createGrouped(
-                function groupKeySelector(item) { return group.key; },
-                function groupDataSelector(item) { return group; }
-            );
-
-            
-
-            listView.itemDataSource = pageList.dataSource;
-            listView.itemTemplate = itemTemplateRenderer;
-            listView.groupDataSource = pageList.groups.dataSource;
-            listView.groupHeaderTemplate = element.querySelector(".headertemplate");
-            listView.oniteminvoked = this._itemInvoked.bind(this);
-*/
             element.querySelector("header[role=banner] .pagetitle").textContent = group.title;
             WinJS.Binding.processAll(document.getElementById("listInfo"), group);
             listView.itemDataSource = myDataSrc;
             listView.itemTemplate = itemTemplateRenderer;
             listView.oniteminvoked = this._itemInvoked;
-
-
 
             this._initializeLayout(listView, Windows.UI.ViewManagement.ApplicationView.value);
             listView.element.focus();
@@ -112,9 +91,19 @@
             this.populateMenu();
             
             listView.addEventListener("iteminvoked", itemInvokedHandler, false);
+           
             //Pop-Menu
             document.querySelector(".titlearea").addEventListener("click", showHeaderMenu, false);
             document.getElementById("goHome").addEventListener("click", goHome, false);
+
+
+            listView.onloadingstatechanged = function () {
+                if (listView.loadingState == "complete" && listView.itemDataSource.getCount == 0 ) {
+                        console.log("emptylist");
+                    
+                }
+            };
+
         }
     
             ,
@@ -159,6 +148,9 @@
                 }
             }
         },
+
+
+
 
         //     // This function updates the ListView with new layouts
         _initializeLayout: function (listView, viewState) {

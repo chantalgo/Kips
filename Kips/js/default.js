@@ -84,11 +84,11 @@
                 //document.getElementById("goAllLists").onclick = goAllLists;
 
 
-                document.getElementById("deleteClip").onclick = Appbar.deleteClip;
+                //document.getElementById("deleteClip").onclick = Appbar.deleteClip;
                 document.getElementById("addClip").onclick = addClip;
-                document.getElementById("addNote").onclick = addNote;
-                document.getElementById("addList").onclick = addList;
-                document.getElementById("editClip").onclick = editClip;
+                //document.getElementById("addNote").onclick = addNote;
+                //document.getElementById("addList").onclick = addList;
+                //document.getElementById("editClip").onclick = editClip;
 
 
             }));

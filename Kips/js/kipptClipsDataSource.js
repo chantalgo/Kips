@@ -152,7 +152,6 @@
                             }
 
                             WinJS.log && WinJS.log("", "sample", "status");
-                            console.log(requestIndex + "," + fetchIndex);
                             return {
                                 items: results, // The array of items
                                 offset: requestIndex - fetchIndex, // The offset into the array for the requested item
