@@ -77,15 +77,15 @@
             listView.forceLayout();
 
             myDataSrc = new kipptClipsDataSource.datasource(groupKey);
-            WinJS.Binding.processAll(document.getElementById("listInfo"), group);
 
             element.querySelector("header[role=banner] .pagetitle").textContent = group.title;
             WinJS.Binding.processAll(document.getElementById("listInfo"), group);
             listView.itemDataSource = myDataSrc;
-            listView.itemTemplate = itemTemplateRenderer;
-            listView.oniteminvoked = this._itemInvoked;
+
 
             this._initializeLayout(listView, Windows.UI.ViewManagement.ApplicationView.value);
+
+            listView.itemTemplate = itemTemplateRenderer;
             listView.element.focus();
 
             this.populateMenu();
@@ -95,14 +95,6 @@
             //Pop-Menu
             document.querySelector(".titlearea").addEventListener("click", showHeaderMenu, false);
             document.getElementById("goHome").addEventListener("click", goHome, false);
-
-
-            listView.onloadingstatechanged = function () {
-                if (listView.loadingState == "complete" && listView.itemDataSource.getCount == 0 ) {
-                        console.log("emptylist");
-                    
-                }
-            };
 
         }
     
@@ -158,17 +150,12 @@
 
             if (viewState === appViewState.snapped) {
                 listView.layout = new ui.ListLayout();
+                listView.itemTemplate = itemTemplateRenderer;
             } else {
                 listView.layout = new ui.GridLayout({ groupHeaderPosition: "left", groupInfo: groupInfo });
             }
         }
-        //,
 
-        //_itemInvoked: function (args) {
-        //    var item = myDataSrc.getItem(args.detail.itemIndex);
-        //    
-        //}
-        //} )
     }) ;
 
    // // Place the menu under the title and aligned to the left of it
